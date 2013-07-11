@@ -1,19 +1,19 @@
-/***************************************************************************
-* Syntax conventions:                                                      *
-* -> indices and powers: "x^2", "x_2";                                     *
-* -> special symbols: "<=>", "*", "->";                                    *
-* -> whitespace sequences: "  " denotes em-space, "\ " denotes thin-space; *
-* -> any correct HTML, including tags and entities.                        *
-* Notes:                                                                   *
-* 1) "<=>" and "=" preserve appropriate spacing on both sides;             *
-* 2) "{}"-groupings in indices and powers are also available;              *
-* 3) "\" is the escape character, except for "\ ".                         *
-***************************************************************************/
+/*****************************************************************************************
+* Syntax conventions:                                                                    *
+* -> indices and powers: "x^2", "x_2";                                                   *
+* -> special symbols: "<=>", "*", "->";                                                  *
+* -> whitespace sequences: "  " denotes em-space, "\ " denotes thin-space;               *
+* -> any correct HTML, including tags and entities.                                      *
+* Notes:                                                                                 *
+* 1) "<=>" and "=" preserve appropriate spacing on both sides;                           *
+* 2) "{}"-groupings in indices and powers are also available;                            *
+* 3) "\" is the escape character, except when it occures before space character in "\ ". *
+*****************************************************************************************/
 
 var submit = function() {
     var code = document.getElementById('editor').value;
-    document.getElementById('source').value
-        = '<p>' + (document.getElementById('preview').innerHTML = convert(code)) + '</p>';
+    var html = document.getElementById('preview').innerHTML = convert(code);
+    document.getElementById('source').value = html ? '<p>' + html + '</p>' : '';
 };
 
 var replace = function(code, dict) {
