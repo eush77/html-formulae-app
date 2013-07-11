@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <title>HTML Formul&aelig;</title>
+    <link type="text/css" rel="stylesheet" href="style.css"/>
+    <script src="core.js"></script>
+  </head>
+  <body>
+    <div class="editor">
+      <textarea id="editor" autofocus onkeyup="submit()"></textarea>
+    </div>
+    <div class="preview" onclick="document.getElementById('source').select()">
+      <p id="preview"></p>
+    </div>
+    <div id="sourceDiv" class="source">
+      <textarea id="source" readonly></textarea>
+    </div>
+  </body>
+</html>
