@@ -2,7 +2,7 @@
 * Syntax conventions:                                                           *
 * -> indices and powers: "x^2", "x_2";                                          *
 * -> special symbols: "<=>", "*", "->";                                         *
-* -> whitespace sequences: "   ", "  ", and "\ " denote (in order) em-space,    *
+* -> whitespace sequences: "   ", "  ", "\ " denote (in order) em-space,        *
 *    en-space, and thin-space;                                                  *
 * -> any correct HTML, including tags and entities.                             *
 * Notes:                                                                        *
