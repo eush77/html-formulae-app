@@ -21,7 +21,7 @@ var submit = function() {
 var replace = function(code, dict) {
     var keys = Object.keys(dict);
     for (var k = 0; k < keys.length; ++k) {
-        code = code.replace(keys[k], dict[keys[k]]);
+        code = code.replace(new RegExp(keys[k], 'g'), dict[keys[k]]);
     }
     return code;
 };
@@ -30,7 +30,7 @@ var convert = function(code) {
     code = replace(code, {
         '<=>': '&thinsp;&hArr;&thinsp;',
         '   ': '&emsp;',
-        '*': '&middot;',
+        '\\*': '&middot;',
         '->': '&rarr;',
         '  ': '&ensp;'
     });
