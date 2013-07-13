@@ -37,6 +37,7 @@ var core = new function() {
         '-': '&minus;',
         '&': '&amp;',
         '+-': '&plusmn;',
+        '-+': '&#8723;',
         'R': '&real;',
         '~': '&sim;',
         'oo': '&infin;'
@@ -62,12 +63,7 @@ var core = new function() {
                     buffer = '';
                 }
                 else {
-                    if (!escaped && c == '\\') {
-                        escaped = true;
-                    }
-                    else {
-                        escaped = false;
-                    }
+                    escaped = !escaped && c == '\\';
                     buffer += c;
                 }
             }
@@ -88,8 +84,7 @@ var core = new function() {
             }
             base[key].dict[seq] = replaceDict[seq];
         }
-        // Compress and reverse
-        return base.filter(Boolean).reverse();
+        return base.filter(Boolean).reverse(); // Compress and reverse
     }();
 
     // Replace character sequences according to replaceDict
