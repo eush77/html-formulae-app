@@ -1,87 +1,123 @@
-/********************************************************************************
-* Syntax conventions:                                                           *
-* -> indices and powers: "x^2", "x_2";                                          *
-* -> special symbols: "<=>", "*", "->";                                         *
-* -> whitespace sequences: "   ", "  ", "\ " denote (in order) em-space,        *
-*    en-space, and thin-space;                                                  *
-* -> any correct HTML, including tags and entities.                             *
-* Notes:                                                                        *
-* 1) "<=>" and "=" preserve appropriate spacing on both sides;                  *
-* 2) "{}"-groupings in indices and powers are also available;                   *
-* 3) "\" is the escape character, except when it occurs before the space        *
-*    character in "\ ".                                                         *
-********************************************************************************/
+var core = new function() {
 
-var submit = function() {
-    var code = document.getElementById('editor').value;
-    var html = document.getElementById('preview').innerHTML = convert(code);
-    document.getElementById('source').value = html ? '<p>' + html + '</p>' : '';
-};
+    this.submit = function() {
+        var code = document.getElementById('editor').value;
+        var html = document.getElementById('preview').innerHTML = this.convert(code);
+        document.getElementById('source').value = html ? '<p>' + html + '</p>' : '';
+    };
 
-var replace = function(code, dict) {
-    var keys = Object.keys(dict);
-    for (var k = 0; k < keys.length; ++k) {
-        code = code.replace(new RegExp(keys[k], 'g'), dict[keys[k]]);
-    }
-    return code;
-};
+    var methodCaller = function(method) {
+        return function(obj) {
+            return obj[method]();
+        };
+    };
 
-var convert = function(code) {
-    code = replace(code, {
+    var curlies = {
+        '_': methodCaller('sub'),
+        '^': methodCaller('sup')
+    };
+
+    var replaceDict = {
+        '<': '&lt;',
+        '<=': '&le;',
+        '>': '&gt;',
+        '>=': '&ge;',
+        '!=': '&ne;',
+        '/=': '&ne;',
         '<=>': '&thinsp;&hArr;&thinsp;',
-        '   ': '&emsp;',
-        '\\*': '&middot;',
+        '=>': '&thinsp;&rArr;&thinsp;',
+        '<=': '&thinsp;&lArr;&thinsp;',
+        '<->': '&harr;',
         '->': '&rarr;',
-        '  ': '&ensp;'
-    });
-    var output = '';
-    var escapeChar = '\\', escaped = false;
-    var curlyState = null, curlies = {'_': 'sub', '^': 'sup'};
-    // DFA begin
-    for (var k = 0; k < code.length; ++k) {
-        var c = code[k];
-        // Toss escaped character away
-        if (escaped) {
-            output += c == ' ' ? '&thinsp;' : c;
-            escaped = false;
-            continue;
+        '<-': '&larr;',
+        '   ': '&emsp;',
+        '  ': '&ensp;',
+        '.': '&thinsp;',
+        '*': '&sdot;',
+        '-': '&minus;',
+        '&': '&amp;',
+        '+-': '&plusmn;',
+        'R': '&real;',
+        '~': '&sim;',
+        'oo': '&infin;'
+    };
+
+    // Recursive descent parser
+    this.convert = function(code) {
+        var pos = 0;
+        return function emit() {
+            var c, output = [], buffer = '';
+            var escaped = false; // Double escaping avoided
+            while ((c = code[pos++]) && c != '}') {
+                if (!escaped && c in curlies) {
+                    var group;
+                    if (code[pos] == '{') {
+                        ++pos;
+                        group = emit();
+                    }
+                    else {
+                        group = code[pos++];
+                    }
+                    output.push(replace(buffer), curlies[c](group));
+                    buffer = '';
+                }
+                else {
+                    if (!escaped && c == '\\') {
+                        escaped = true;
+                    }
+                    else {
+                        escaped = false;
+                    }
+                    buffer += c;
+                }
+            }
+            return output.concat(replace(buffer)).join('');
+        }();
+    };
+
+    // Split replaceDict into groups by key length (= replace priority)
+    var replaceBase = function() {
+        var base = [];
+        for (var seq in replaceDict) {
+            var key = seq.length;
+            if (!(key in base)) {
+                base[key] = {
+                    len: key,
+                    dict: {}
+                };
+            }
+            base[key].dict[seq] = replaceDict[seq];
         }
-        // Render brace-enclosed code
-        if (curlyState) {
-            output += '<' + curlyState + '>';
-            var rightBrace;
-            if (c == '{' && ((rightBrace = code.indexOf('}', k)) != -1)) {
-                output += code.slice(k + 1, rightBrace);
-                k = rightBrace;
+        // Compress and reverse
+        return base.filter(Boolean).reverse();
+    }();
+
+    // Replace character sequences according to replaceDict
+    var replace = function(plain) {
+        var output = '', pos = 0;
+        var escaped = false;
+        outer:while (pos < plain.length) {
+            if (escaped) {
+                output += plain[pos++];
+                escaped = false;
+            }
+            else if (plain[pos] == '\\') {
+                ++pos;
+                escaped = true;
             }
             else {
-                output += c;
+                for (var r = 0; r < replaceBase.length; ++r) {
+                    var len = replaceBase[r].len, substr = plain.slice(pos, pos + len);
+                    if (substr in replaceBase[r].dict) {
+                        output += replaceBase[r].dict[substr];
+                        pos += len;
+                        continue outer;
+                    }
+                }
+                output += plain[pos++];
             }
-            output += '</' + curlyState + '>';
-            curlyState = null;
-            continue;
         }
-        // Check for brace-enclosure flag
-        if ((function() {
-            var found = curlies.hasOwnProperty(c);
-            if (found) {
-                curlyState = curlies[c];
-            }
-            return found;
-        })()) {
-            continue;
-        }
-        // Handle the rest of characters
-        switch (c) {
-        case escapeChar:
-            escaped = true;
-            break;
-        case '=':
-            output += '&thinsp;' + c + '&thinsp;';
-            break;
-        default:
-            output += c;
-        }
-    }
-    return output;
-};
+        return output;
+    };
+
+}();
