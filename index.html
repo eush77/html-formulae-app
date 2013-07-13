@@ -18,16 +18,58 @@
     <div class="help">
       <h3 class="syntax">Syntax conventions:</h3>
       <ul class="syntax">
-        <li>indices and powers: &ldquo;x^2&rdquo;, &ldquo;x_2&rdquo;;</li>
-        <li>special symbols: &ldquo;&lt;=>&rdquo;, &ldquo;*&rdquo;, &ldquo;->&rdquo;;</li>
-        <li>whitespace sequences: &ldquo;&#9251;&#9251;&#9251;&rdquo;, &ldquo;&#9251;&#9251;&rdquo;, &ldquo;\&#9251;&rdquo; denote (in order) em-space, en-space, and thin-space characters;</li>
-        <li>any correct HTML, including tags and entities.</li>
+        <li>indices and powers: &ldquo;x^2&rdquo;, &ldquo;x_2&rdquo;; </li>
+        <li>any correct HTML (if properly escaped), including tags and entities;</li>
+        <li>special symbol sequences:</li>
+        <div class="symbols"> <!-- Set margins to the border-collapsed table -->
+          <table class="symbols">
+            <tbody>
+              <tr>
+                <td>&ldquo;&lt;&rdquo;, &ldquo;&lt;=&rdquo;, &ldquo;&gt;&rdquo;, &ldquo;&gt;=&rdquo;, &ldquo;!=&rdquo;, &ldquo;/=&rdquo;, &ldquo;~&rdquo;</td>
+                <td>Comparison relations</td>
+              </tr>
+              <tr>
+                <td>&ldquo;&lt;=&gt;&rdquo;, &ldquo;=&gt;&rdquo;, &ldquo;&lt;=&rdquo;</td>
+                <td>Inference relations</td>
+              </tr>
+              <tr>
+                <td>&ldquo;&lt;-&gt;&rdquo;, &ldquo;-&gt;&rdquo;, &ldquo;&lt;-&rdquo;</td>
+                <td>Arrows</td>
+              </tr>
+              <tr>
+                <td>&ldquo;&#9251;&#9251;&#9251;&rdquo;, &ldquo;&#9251;&#9251;&rdquo;, &ldquo;.&rdquo;</td>
+                <td>Whitespace sequences: em-space, en-space, and thin-space (respectively)</td>
+              </tr>
+              <tr>
+                <td>&ldquo;*&rdquo;, &ldquo;-&rdquo;</td>
+                <td>Arithmetic multiplication and subtraction</td>
+              </tr>
+              <tr>
+                <td>&ldquo;&amp;&rdquo;</td>
+                <td>Ampersand</td>
+              </tr>
+              <tr>
+                <td>&ldquo;+-&rdquo;</td>
+                <td>Plus-minus sign</td>
+              </tr>
+              <tr>
+                <td>&ldquo;R&rdquo;</td>
+                <td>Real set</td>
+              </tr>
+              <tr>
+                <td>&ldquo;oo&rdquo;</td>
+                <td>Infinity</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </ul>
       <h3 class="notes">Notes:</h3>
       <ol class="notes">
-        <li>&ldquo;&hArr;&rdquo; and &ldquo;=&rdquo; preserve appropriate spacing on both sides;</li>
-        <li>&ldquo;{}&rdquo;-groupings in indices and powers are also available;</li>
-        <li>&ldquo;\&rdquo; is the escape character, except when it occurs before the space character in &ldquo;\&#9251;&rdquo;.</li>
+        <li>&ldquo;\&rdquo; is the escape character;</li>
+        <li>&ldquo;{}&rdquo;-groupings in indices and powers are available;</li>
+        <li>&ldquo;&hArr;&rdquo;, &ldquo;&rArr;&rdquo;, and &ldquo;&lArr;&rdquo; preserve appropriate spacing on both sides;</li>
+        <li>indices and powers can also be nested: x^{x_0}.</li>
       </ol>
     </div>
   </body>

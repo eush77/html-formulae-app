@@ -39,14 +39,22 @@ div.help {
     color: #666;
     width: 70%;
     float: right;
+    border-left: 1px solid #111;
+    padding-left: 0.5em;
+    padding-bottom: 0.5em;
 }
 div.help * {
     margin: 0;
 }
 div.help h3 {
-    margin-top: 1.5em;
-    margin-bottom: 0.2em;
+    margin-top: 0.8em;
+    margin-bottom: 0.1em;
 }
+div.help h3 {
+    letter-spacing: 1px;
+}
+
+/* List style: 1), 2), 3)... */
 ol.notes {
     list-style: none outside;
     counter-reset: item;
@@ -56,11 +64,31 @@ ol.notes > li:before {
     counter-increment: item;
     margin-left: -1.4em;
 }
-div.help h3 {
-    letter-spacing: 1px;
+
+/* Syntax character table */
+div.symbols {
+    padding: 0;
+    border: none;
+    margin: 0;
+    margin-top: 0.3em;
 }
-div.help {
-    border-left: 1px solid #111;
+table.symbols {
+    border-collapse: collapse;
+}
+table.symbols td {
+    border-bottom: 1px dashed #666;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+table.symbols tr:first-child > td {
+    border-top: 1px dashed #666;
+}
+table.symbols td:first-child {
+    text-align: center;
+    font-family: monospace;
+    border-right: 1px dashed #666;
+}
+table.symbols td:last-child {
+    text-align: left;
     padding-left: 0.5em;
-    padding-bottom: 0.5em;
 }
