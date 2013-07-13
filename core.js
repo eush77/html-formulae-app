@@ -41,7 +41,9 @@ var core = new function() {
         'R': '&real;',
         '~': '&sim;',
         'oo': '&infin;',
-        '\n': '<br/>'
+        '\n': '<br/>',
+        '--': '&ndash;',
+        '---': '&mdash;'
     };
 
     // Recursive descent parser
