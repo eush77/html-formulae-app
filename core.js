@@ -26,7 +26,7 @@ var core = new function() {
         '/=': '&ne;',
         '<=>': '&thinsp;&hArr;&thinsp;',
         '=>': '&thinsp;&rArr;&thinsp;',
-        '<=': '&thinsp;&lArr;&thinsp;',
+        '=<': '&thinsp;&lArr;&thinsp;',
         '<->': '&harr;',
         '->': '&rarr;',
         '<-': '&larr;',
