@@ -52,7 +52,7 @@ var core = new function() {
         return function emit() {
             var c, output = [], buffer = '';
             var escaped = false; // Double escaping avoided
-            while ((c = code[pos++]) && c != '}') {
+            while ((c = code[pos++]) && (c != '}' || escaped)) {
                 if (!escaped && c in curlies) {
                     var group;
                     if (code[pos] == '{') {
