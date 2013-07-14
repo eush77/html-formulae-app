@@ -92,3 +92,14 @@ table.symbols td:last-child {
     text-align: left;
     padding-left: 0.5em;
 }
+
+/* Auto-terminating lists */
+li:after {
+    content: ";";
+}
+li:last-child:after {
+    content: ".";
+}
+li.no-punctuation:after {
+    content: "";
+}
