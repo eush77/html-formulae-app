@@ -44,6 +44,10 @@ var core = new function() {
         , '\n': '<br/>'
         , '--': '&ndash;'
         , '---': '&mdash;'
+        , '``': '&ldquo;'
+        , '\'\'': '&rdquo;'
+        , '<<': '&laquo;'
+        , '>>': '&raquo;'
     };
 
     // Recursive descent parser
