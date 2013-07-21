@@ -18,32 +18,32 @@ var core = new function() {
     };
 
     var replaceDict = {
-        '<': '&lt;',
-        '<=': '&le;',
-        '>': '&gt;',
-        '>=': '&ge;',
-        '!=': '&ne;',
-        '/=': '&ne;',
-        '<=>': '&thinsp;&hArr;&thinsp;',
-        '=>': '&thinsp;&rArr;&thinsp;',
-        '=<': '&thinsp;&lArr;&thinsp;',
-        '<->': '&harr;',
-        '->': '&rarr;',
-        '<-': '&larr;',
-        '   ': '&emsp;',
-        '  ': '&ensp;',
-        '.': '&thinsp;',
-        '*': '&sdot;',
-        '-': '&minus;',
-        '&': '&amp;',
-        '+-': '&plusmn;',
-        '-+': '&#8723;',
-        'R': '&real;',
-        '~': '&sim;',
-        'oo': '&infin;',
-        '\n': '<br/>',
-        '--': '&ndash;',
-        '---': '&mdash;'
+        '<': '&lt;'
+        , '<=': '&le;'
+        , '>': '&gt;'
+        , '>=': '&ge;'
+        , '!=': '&ne;'
+        , '/=': '&ne;'
+        , '<=>': '&thinsp;&hArr;&thinsp;'
+        , '=>': '&thinsp;&rArr;&thinsp;'
+        , '=<': '&thinsp;&lArr;&thinsp;'
+        , '<->': '&harr;'
+        , '->': '&rarr;'
+        , '<-': '&larr;'
+        , '   ': '&emsp;'
+        , '  ': '&ensp;'
+        , '.': '&thinsp;'
+        , '*': '&sdot;'
+        , '-': '&minus;'
+        , '&': '&amp;'
+        , '+-': '&plusmn;'
+        , '-+': '&#8723;'
+        , 'R': '&real;'
+        , '~': '&sim;'
+        , 'oo': '&infin;'
+        , '\n': '<br/>'
+        , '--': '&ndash;'
+        , '---': '&mdash;'
     };
 
     // Recursive descent parser
