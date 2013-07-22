@@ -38,7 +38,7 @@ var core = new function() {
         , '&': '&amp;'
         , '+-': '&plusmn;'
         , '-+': '&#8723;'
-        , 'R': '&real;'
+        , 'setR': '&real;'
         , '~': '&sim;'
         , 'oo': '&infin;'
         , '\n': '<br/>'
