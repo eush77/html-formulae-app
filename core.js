@@ -48,6 +48,9 @@ var core = new function() {
         , '\'\'': '&rdquo;'
         , '<<': '&laquo;'
         , '>>': '&raquo;'
+        , '||': '&or;'
+        , '&&': '&and;'
+        , '!': '&not;'
     };
 
     // Recursive descent parser
