@@ -56,6 +56,8 @@ var core = new function() {
         , '||': '&or;'
         , '&&': '&and;'
         , '!': '&not;'
+        , ':=': '&#8788;'
+        , '=def=': '&#8797'
     };
 
     // Recursive descent parser
