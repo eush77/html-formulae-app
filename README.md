@@ -4,7 +4,7 @@ Simple formula editor for HTML with pretty natural human-oriented syntax.
 ## Example
 Suppose you have to input the following formula in HTML:
 
-> &forall;(x,y)&isin;&real;<sup>2</sup>:&ensp;[y&gt;0&thinsp;&amp;&thinsp;(x&ne;0&thinsp;&or;&thinsp;y=1)]&thinsp;&hArr;&thinsp;[&exist;a&gt;0:&thinsp;a<sup>x</sup>=y]
+> &forall;(x,y)&isin;&#8477;<sup>2</sup>:&ensp;[y&gt;0&thinsp;&amp;&thinsp;(x&ne;0&thinsp;&or;&thinsp;y=1)]&thinsp;&hArr;&thinsp;[&exist;a&gt;0:&thinsp;a<sup>x</sup>=y]
 
 The following piece of code is one you probably should use in this case:
 
@@ -14,7 +14,7 @@ Quite straightforward, right?
 
 Now look at generated HTML for this simple line. You should be extremely patient to write it by hand!
 
-    <p>&forall;(x,y)&isin;&real;<sup>2</sup>:&ensp;[y&gt;0&thinsp;&amp;&thinsp;(x&ne;0&thinsp;&or;&thinsp;y=1)]&thinsp;&hArr;&thinsp;[&exist;a&gt;0:&thinsp;a<sup>x</sup>=y]</p>
+    <p>&forall;(x,y)&isin;&#8477;<sup>2</sup>:&ensp;[y&gt;0&thinsp;&amp;&thinsp;(x&ne;0&thinsp;&or;&thinsp;y=1)]&thinsp;&hArr;&thinsp;[&exist;a&gt;0:&thinsp;a<sup>x</sup>=y]</p>
 
 ## Features
 Two main features of &ldquo;HTML Formul&aelig;&rdquo; include subscript/superscript rendering and character sequences replacement. The syntax for the former one is pretty much the same as in LaTeX document preparation system and supports arbitrary levels of nesting.
