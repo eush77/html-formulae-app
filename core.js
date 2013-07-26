@@ -65,6 +65,7 @@ var core = new function() {
         , ':=': '&#8788;'
         , '=def=': '&#8797'
         , '~~': '&asymp;'
+        , ']]': '&#8848; '
     };
 
     // Recursive descent parser
