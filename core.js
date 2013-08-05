@@ -52,6 +52,7 @@ var core = new function() {
         , 'setQ': '&#8474;'
         , 'setR': '&#8477;'
         , 'setC': '&#8450;'
+        , 'setF': '&#120125;'
         , '~': '&sim;'
         , 'oo': '&infin;'
         , '\n': '<br/>'
