@@ -75,15 +75,15 @@ var core = new function() {
     // Recursive descent parser
     this.convert = function(code) {
         var pos = 0;
-        return function emit() {
+        return function emit(level) {
             var c, output = [], buffer = '';
             var escaped = false; // Double escaping avoided
-            while ((c = code[pos++]) && (c != '}' || escaped)) {
+            while ((c = code[pos++]) && (c != '}' || level == 0 || escaped)) {
                 if (!escaped && c in curlies) {
                     var group;
                     if (code[pos] == '{') {
                         ++pos;
-                        group = emit();
+                        group = emit(level + 1);
                     }
                     else {
                         group = code[pos++];
@@ -97,7 +97,7 @@ var core = new function() {
                 }
             }
             return output.concat(replace(buffer)).join('');
-        }();
+        }(0);
     };
 
     // Split replaceDict into groups by key length (= replace priority)
