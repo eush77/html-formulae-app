@@ -75,7 +75,8 @@ var core = new function() {
     // Recursive descent parser
     this.convert = function(code) {
         var pos = 0;
-        return function emit(level) {
+        return function emit(level, quota) {
+            quota = quota || Infinity;
             var c, output = [], buffer = '';
             var escaped = false; // Double escaping avoided
             while ((c = code[pos++]) && (c != '}' || level == 0 || escaped)) {
@@ -86,14 +87,16 @@ var core = new function() {
                         group = emit(level + 1);
                     }
                     else {
-                        group = code[pos++];
+                        group = emit(level, 1);
                     }
                     output.push(replace(buffer), curlies[c](group));
                     buffer = '';
                 }
                 else {
-                    escaped = !escaped && c == '\\';
                     buffer += c;
+                    if (!(escaped = !escaped && c == '\\') && !--quota) {
+                        break;
+                    }
                 }
             }
             return output.concat(replace(buffer)).join('');
