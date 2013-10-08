@@ -119,8 +119,20 @@ var core = new function() {
         return base.filter(Boolean).reverse(); // Compress and reverse
     }();
 
+    var preReplaceHooks = [
+        function smartHyphen(plain) {
+            var re = /(^|\s)(([a-zA-Z]+-)+[a-zA-Z]+\s+)*([a-zA-Z]+-)+[a-zA-Z]+(\s|$)/g;
+            return plain.replace(re, function(substr) {
+                return substr.replace(/-/g, '\\-');
+            });
+        },
+    ];
+
     // Replace character sequences according to replaceDict
     var replace = function(plain) {
+        preReplaceHooks.forEach(function(hook) {
+            plain = hook(plain);
+        });
         var output = '', pos = 0;
         var escaped = false;
         outer:while (pos < plain.length) {
