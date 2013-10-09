@@ -80,7 +80,7 @@ var core = new function() {
             var c, output = [], buffer = '';
             var escaped = false; // Double escaping avoided
             while ((c = code[pos++]) && (c != '}' || level == 0 || escaped)) {
-                if (!escaped && c in curlies) {
+                if (!escaped && c in curlies && code[pos]) {
                     var group;
                     if (code[pos] == '{') {
                         ++pos;
