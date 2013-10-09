@@ -72,8 +72,20 @@ var core = new function() {
         , ']]': '&#8848; '
     };
 
+    var preConvertHooks = [
+        function smartHyphen(code) {
+            var re = /(^|\s)(([a-zA-Z]+-)+[a-zA-Z]+\s+)*([a-zA-Z]+-)+[a-zA-Z]+(\s|$)/g;
+            return code.replace(re, function(substr) {
+                return substr.replace(/-/g, '\\-');
+            });
+        },
+    ];
+
     // Recursive descent parser
     this.convert = function(code) {
+        preConvertHooks.forEach(function(hook) {
+            code = hook(code);
+        });
         var pos = 0;
         return function emit(level, quota) {
             quota = quota || Infinity;
@@ -119,20 +131,8 @@ var core = new function() {
         return base.filter(Boolean).reverse(); // Compress and reverse
     }();
 
-    var preReplaceHooks = [
-        function smartHyphen(plain) {
-            var re = /(^|\s)(([a-zA-Z]+-)+[a-zA-Z]+\s+)*([a-zA-Z]+-)+[a-zA-Z]+(\s|$)/g;
-            return plain.replace(re, function(substr) {
-                return substr.replace(/-/g, '\\-');
-            });
-        },
-    ];
-
     // Replace character sequences according to replaceDict
     var replace = function(plain) {
-        preReplaceHooks.forEach(function(hook) {
-            plain = hook(plain);
-        });
         var output = '', pos = 0;
         var escaped = false;
         outer:while (pos < plain.length) {
