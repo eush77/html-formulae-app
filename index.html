@@ -9,10 +9,10 @@
     <div class="editor">
       <textarea id="editor" autofocus onkeyup="core.submit()" placeholder="Your code here"></textarea>
     </div>
-    <div class="preview" onclick="document.getElementById('source').select()">
+    <div class="preview">
       <p id="preview"></p>
     </div>
-    <div class="source">
+    <div class="source" onclick="this.firstElementChild.select()">
       <textarea id="source" readonly></textarea>
     </div>
     <div class="help">
