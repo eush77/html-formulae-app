@@ -70,6 +70,10 @@ var core = new function() {
         , '=def=': '&#8797'
         , '~~': '&asymp;'
         , ']]': '&#8848; '
+        , '|-': '&#8866;'
+        , '|=': '&#8872;'
+        , 'TT': '&#8868;'
+        , 'BB': '&perp;'
     };
 
     var preConvertHooks = [
@@ -78,6 +82,16 @@ var core = new function() {
             return code.replace(re, function(substr) {
                 return substr.replace(/-/g, '\\-');
             });
+        },
+        function skipRegularLetterDoubling(code) {
+            var handler = function(substr, leftPart, rightPart) {
+                return leftPart + '\\' + rightPart;
+            };
+            ['T', 'B'].forEach(function(c) {
+                code = code.replace(RegExp('(\\wc)(c)'.replace(/c/g, c), 'g'), handler)
+                    .replace(RegExp('(c)(c\\w)'.replace(/c/g, c), 'g'), handler);
+            });
+            return code;
         },
     ];
 
