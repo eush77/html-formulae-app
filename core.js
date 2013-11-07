@@ -77,21 +77,24 @@ var core = new function() {
     };
 
     var preConvertHooks = [
-        function smartHyphen(code) {
-            var re = /(^|\s)(([a-zA-Z]+-)+[a-zA-Z]+\s+)*([a-zA-Z]+-)+[a-zA-Z]+(\s|$)/g;
-            return code.replace(re, function(substr) {
-                return substr.replace(/-/g, '\\-');
-            });
-        },
         function skipRegularLetterDoubling(code) {
-            var handler = function(substr, leftPart, rightPart) {
-                return leftPart + '\\' + rightPart;
-            };
+            var inTextReplacePattern = '$1\\$2';
             ['T', 'B'].forEach(function(c) {
-                code = code.replace(RegExp('(\\wc)(c)'.replace(/c/g, c), 'g'), handler)
-                    .replace(RegExp('(c)(c\\w)'.replace(/c/g, c), 'g'), handler);
+                code = code.replace(RegExp('(\\wc)(c)'.replace(/c/g, c), 'g'), inTextReplacePattern)
+                    .replace(RegExp('(c)(c\\w)'.replace(/c/g, c), 'g'), inTextReplacePattern);
             });
             return code;
+        },
+    ];
+
+    var postConvertHooks = [
+        function smartHyphen(code) {
+            var minus = replaceDict['-'];
+            var re = RegExp('(^|\\s)(([a-zA-Z]{2,}MINUS)+[a-zA-Z]{2,}\\s+)*([a-zA-Z]{2,}MINUS)+[a-zA-Z]{2,}(\\s|$)'
+                            .replace(/MINUS/g, minus), 'g');
+            return code.replace(re, function(substr) {
+                return substr.replace(RegExp(minus, 'g'), '-');
+            });
         },
     ];
 
@@ -101,7 +104,7 @@ var core = new function() {
             code = hook(code);
         });
         var pos = 0;
-        return function emit(level, quota) {
+        code = (function emit(level, quota) {
             quota = quota || Infinity;
             var c, output = [], buffer = '';
             var escaped = false; // Double escaping avoided
@@ -126,7 +129,11 @@ var core = new function() {
                 }
             }
             return output.concat(replace(buffer)).join('');
-        }(0);
+        }(0));
+        postConvertHooks.forEach(function(hook) {
+            code = hook(code);
+        });
+        return code;
     };
 
     // Split replaceDict into groups by key length (= replace priority)
