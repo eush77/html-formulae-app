@@ -90,8 +90,16 @@ var core = new function() {
     var postConvertHooks = [
         function smartHyphen(code) {
             var minus = replaceDict['-'];
-            var re = RegExp('(^|\\s)(([a-zA-Z]{2,}MINUS)+[a-zA-Z]{2,}\\s+)*([a-zA-Z]{2,}MINUS)+[a-zA-Z]{2,}(\\s|$)'
-                            .replace(/MINUS/g, minus), 'g');
+            var punctuation = '[,.:)!?;\'"]?';
+            var space = '(\\s|{.}|{  }|{   })'.replace(RegExp('\\{(.+?)\\}', 'g'), function(m, s) {
+                return replaceDict[s];
+            });
+            var re = RegExp(('(^|SPACE)(([a-zA-Z]{2,}MINUS)+[a-zA-Z]{2,}PUNCTSPACE+)*'
+                            + '([a-zA-Z]{2,}MINUS)+[a-zA-Z]{2,}PUNCT(SPACE|$)')
+                            .replace(/MINUS/g, minus)
+                            .replace(/PUNCT/g, punctuation)
+                            .replace(/SPACE/g, space)
+                            , 'g');
             return code.replace(re, function(substr) {
                 return substr.replace(RegExp(minus, 'g'), '-');
             });
