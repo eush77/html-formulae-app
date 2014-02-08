@@ -76,6 +76,19 @@ var core = new function() {
         , 'BB': '&perp;'
     };
 
+    (function installMathematicalBoldScriptLetters(dict) {
+        var installAlphabet = function(mnemonicPrefix, aScriptCode, aRegularCode, size) {
+            size = size || 26; // Latin by default
+            for (var letterIndex = 0; letterIndex < size; ++letterIndex) {
+                var mnemonic = mnemonicPrefix + String.fromCharCode(aRegularCode + letterIndex);
+                var html = ['&#x', (aScriptCode + letterIndex).toString(0x10), ';'].join('');
+                dict[mnemonic] = html;
+            }
+        };
+        installAlphabet('mbscript', 0x1d4d0, 'A'.charCodeAt());
+        installAlphabet('mbscript', 0x1d4ea, 'a'.charCodeAt());
+    }(replaceDict));
+
     var preConvertHooks = [
         function skipRegularLetterDoubling(code) {
             var inTextReplacePattern = '$1\\$2';
