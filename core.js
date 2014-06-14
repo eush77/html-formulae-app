@@ -1,4 +1,4 @@
-var core = new function() {
+var core = new function(document) {
 
     this.submit = function() {
         var code = document.getElementById('editor').value;
@@ -201,4 +201,4 @@ var core = new function() {
         return output;
     };
 
-}();
+}(document);
