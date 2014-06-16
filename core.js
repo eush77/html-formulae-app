@@ -92,9 +92,9 @@ var core = new function(document) {
     var preConvertHooks = [
         function skipRegularLetterDoubling(code) {
             var inTextReplacePattern = '$1\\$2';
-            ['T', 'B'].forEach(function(c) {
-                code = code.replace(RegExp('(\\wc)(c)'.replace(/c/g, c), 'g'), inTextReplacePattern)
-                    .replace(RegExp('(c)(c\\w)'.replace(/c/g, c), 'g'), inTextReplacePattern);
+            ['T', 'B'].forEach(function(char) {
+                code = code.replace(RegExp(_.template('(\\w${c})(${c})', {c: char}), 'g'), inTextReplacePattern)
+                    .replace(RegExp(_.template('(${c})(${c}\\w)', {c: char}), 'g'), inTextReplacePattern);
             });
             return code;
         },
@@ -107,12 +107,14 @@ var core = new function(document) {
             var space = '(\\s|{.}|{  }|{   })'.replace(RegExp('\\{(.+?)\\}', 'g'), function(m, s) {
                 return replaceDict[s];
             });
-            var re = RegExp(('(^|SPACE)(([a-zA-Z]{2,}MINUS)+[a-zA-Z]{2,}PUNCTSPACE+)*'
-                            + '([a-zA-Z]{2,}MINUS)+[a-zA-Z]{2,}PUNCT(SPACE|$)')
-                            .replace(/MINUS/g, minus)
-                            .replace(/PUNCT/g, punctuation)
-                            .replace(/SPACE/g, space)
-                            , 'g');
+            var re = RegExp(_.template('(^|${space})(([a-zA-Z]{2,}${minus})+[a-zA-Z]{2,}${punct}${space}+)*'
+                                       + '([a-zA-Z]{2,}${minus})+[a-zA-Z]{2,}${punct}(${space}|$)',
+                                       {
+                                           minus: minus,
+                                           punct: punctuation,
+                                           space: space
+                                       }),
+                            'g');
             return code.replace(re, function(substr) {
                 return substr.replace(RegExp(minus, 'g'), '-');
             });
