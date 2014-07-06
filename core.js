@@ -98,6 +98,9 @@ var core = new function(document) {
             });
             return code;
         },
+        function doubleLetterO(code) {
+            return code.replace(/(\w)oo(\w)/g, '$1o\\o$2');
+        },
     ];
 
     var postConvertHooks = [
