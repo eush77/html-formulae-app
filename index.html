@@ -5,15 +5,16 @@
     <link type="text/css" rel="stylesheet" href="style.css"/>
     <script src="lib/lodash.min.js"></script>
     <script src="core.js"></script>
+    <script src="index.js"></script>
   </head>
   <body>
     <div class="editor">
-      <textarea id="editor" autofocus onkeyup="core.submit()" placeholder="Your code here"></textarea>
+      <textarea id="editor" autofocus placeholder="Your code here"></textarea>
     </div>
     <div class="preview">
       <p id="preview"></p>
     </div>
-    <div class="source" onclick="this.firstElementChild.select()">
+    <div class="source">
       <textarea id="source" readonly></textarea>
     </div>
     <div class="help">

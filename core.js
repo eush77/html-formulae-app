@@ -1,10 +1,4 @@
-var core = new function(document) {
-
-    this.submit = function() {
-        var code = document.getElementById('editor').value;
-        var html = document.getElementById('preview').innerHTML = this.convert(code);
-        document.getElementById('source').value = html ? '<p>' + html + '</p>' : '';
-    };
+var core = new function() {
 
     var methodCaller = function(method) {
         return function(obj) {
@@ -206,4 +200,4 @@ var core = new function(document) {
         return output;
     };
 
-}(document);
+};
