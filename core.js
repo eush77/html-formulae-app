@@ -1,4 +1,4 @@
-var core = new function() {
+function Core(_) {
 
     var methodCaller = function(method) {
         return function(obj) {
@@ -200,4 +200,12 @@ var core = new function() {
         return output;
     };
 
-};
+}
+
+if (typeof(module) != 'undefined') {
+    var _ = require('./lib/lodash.min');
+    module.exports = new Core(_).convert;
+}
+else {
+    window.core = new Core(window._);
+}
