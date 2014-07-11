@@ -1,5 +1,7 @@
+'use strict';
+
 (function (window) {
-    var submit = function() {
+    var submit = function () {
         var code = document.getElementById('editor').value;
         var html = document.getElementById('preview').innerHTML = window.core.convert(code);
         document.getElementById('source').value = html ? '<p>' + html + '</p>' : '';
