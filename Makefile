@@ -4,4 +4,4 @@ jshint:
 	jshint *.js
 
 test:
-	nodejs test
+	node test
