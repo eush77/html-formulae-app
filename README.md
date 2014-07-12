@@ -1,4 +1,4 @@
-HTML Formul&aelig;
+HTML Formul&aelig; [![Build Status](https://travis-ci.org/eush77/html-formulae.svg?branch=master)](https://travis-ci.org/eush77/html-formulae)
 ==================
 Simple formula editor for HTML with pretty natural human-oriented syntax.
 ## Example
