@@ -1,7 +1,9 @@
 all: jshint test
 
 jshint:
-	jshint *.js
+	jshint *.js test
 
 test:
-	node test
+	mocha
+
+.PHONY: jshint test
