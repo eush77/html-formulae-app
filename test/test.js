@@ -82,6 +82,8 @@ describe('Arithmetic and logical operators', function () {
     convert('merry-go-round').should.equal('merry-go-round');
     convert('de-Stalinisation').should.equal('de-Stalinisation');
     convert('Merriam-Webster\'s').should.equal('Merriam-Webster\'s');
+    convert('father-in-law\'s').should.equal('father-in-law\'s');
+    convert('O\'Brien-Schwartz\'s restaurant').should.equal('O\'Brien-Schwartz\'s restaurant');
     convert('syl-la-bi-fi-ca-tion').should.equal('syl-la-bi-fi-ca-tion');
     convert('e-mail').should.equal('e&minus;mail'); // Single letters don't count.
     convert('pre-1949').should.equal('pre&minus;1949');
