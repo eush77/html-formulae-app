@@ -107,13 +107,14 @@ function Core(_) {
       var space = '(\\s|{.}|{  }|{   })'.replace(new RegExp('\\{(.+?)\\}', 'g'), function (m, s) {
         return replaceDict[s];
       });
-      var re = new RegExp(_.template('(^|${space})(([a-zA-Z]{2,}${minus})+[a-zA-Z]{2,}${punct}' +
-                                     '${space}+)*([a-zA-Z]{2,}${minus})+[a-zA-Z]{2,}${punct}' +
-                                     '(${space}|$)',
+      var word = '[a-zA-Z\']{2,}';
+      var re = new RegExp(_.template('(^|${space})((${word}${minus})+${word}${punct}${space}+)*' +
+                                     '(${word}${minus})+${word}${punct}(${space}|$)',
                                      {
                                        minus: minus,
                                        punct: punctuation,
-                                       space: space
+                                       space: space,
+                                       word: word
                                      }),
                           'g');
       return code.replace(re, function (substr) {
