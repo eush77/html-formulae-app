@@ -172,6 +172,7 @@ describe('Various symbols', function () {
     convert('boobook').should.equal('boobook');
     convert('oocyte').should.equal('oocyte');
     convert('zoo').should.equal('zoo');
+    convert('1oo1').should.equal('1&infin;1');
   });
 });
 
