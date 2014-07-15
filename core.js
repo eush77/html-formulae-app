@@ -153,6 +153,9 @@ function Core(_) {
           }
         }
       }
+      if (escaped) {
+        buffer += '\\';
+      }
       return output.concat(replace(buffer)).join('');
     }(0));
     postConvertHooks.forEach(function (hook) {
