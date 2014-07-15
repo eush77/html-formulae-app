@@ -96,7 +96,13 @@ function Core(_) {
       return code;
     },
     function doubleLetterO(code) {
-      return code.replace(/(\w)oo(\w)/g, '$1o\\o$2');
+      var isLetter = function (char) {
+        return /[a-zA-Z]/.test(char || '');
+      };
+      return code.replace(/oo/g, function (match, offset) {
+        var protect = isLetter(code[offset - 1]) || isLetter(code[offset + match.length]);
+        return protect ? 'o\\o' : 'oo';
+      });
     },
   ];
 
