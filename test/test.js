@@ -163,6 +163,11 @@ describe('Various symbols', function () {
 
   it('should not replace double "o" with infinity inside words', function () {
     convert('book').should.equal('book');
+    convert('boook').should.equal('boook');
+    convert('booook').should.equal('booook');
+    convert('booooook').should.equal('booooook');
+    convert('booooooook').should.equal('booooooook');
+    convert('boobook').should.equal('boobook');
     convert('oocyte').should.equal('oocyte');
     convert('zoo').should.equal('zoo');
   });
