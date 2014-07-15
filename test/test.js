@@ -74,7 +74,7 @@ describe('Arithmetic and logical operators', function () {
     convert('x&&!!x||!x').should.equal('x&and;&not;&not;x&or;&not;x');
   });
 
-  it('should not replace dashes with minuses in compound words', function () {
+  it('should not replace hyphens with minuses in compound words', function () {
     convert('test-driven').should.equal('test-driven');
     convert('test-driven0').should.equal('test&minus;driven0');
     convert('test-driven-').should.equal('test&minus;driven&minus;');
