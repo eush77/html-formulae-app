@@ -2,15 +2,30 @@
   "name": "html-formulae",
   "version": "0.3.0",
   "description": "Formula editor for HTML",
-  "dependencies": {},
-  "devDependencies": {
-    "jshint": "~2.4.4",
-    "mocha": "^1.20.1",
-    "should": "^4.0.4"
+  "scripts": {
+    "test": "make"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/eush77/html-formulae"
   },
-  "license": "MIT"
+  "keywords": [
+    "formula",
+    "editor",
+    "tex",
+    "latex",
+    "html",
+    "entities"
+  ],
+  "author": "Eugene Sharygin <eush77@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eush77/html-formulae/issues"
+  },
+  "homepage": "https://github.com/eush77/html-formulae",
+  "devDependencies": {
+    "jshint": "~2.4.4",
+    "mocha": "^1.20.1",
+    "should": "^4.0.4"
+  }
 }
