@@ -6,7 +6,7 @@ module.exports = function (grunt) {
       options: {
         jshintrc: true
       },
-      all: ['*.js', 'test/**/*.js']
+      all: ['src/js/*.js', 'test/**/*.js']
     },
     mocha: {
       options: {

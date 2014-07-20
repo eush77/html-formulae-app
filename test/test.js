@@ -1,7 +1,7 @@
 /* global describe, it */
 'use strict';
 
-var convert = require('../core');
+var convert = require('../src/js/core');
 
 
 describe('Core functionality', function () {
