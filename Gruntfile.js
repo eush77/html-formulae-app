@@ -6,7 +6,7 @@ module.exports = function (grunt) {
       options: {
         jshintrc: true
       },
-      all: ['src/js/*.js', 'test/**/*.js']
+      all: ['Gruntfile.js', 'src/js/**/*.js', 'test/**/*.js']
     },
     mocha: {
       options: {
@@ -19,7 +19,8 @@ module.exports = function (grunt) {
       dist: {
         expand: true,
         flatten: true,
-        src: 'src/{css,html}/*',
+        src: 'src/{css,html}/**/*',
+        filter: 'isFile',
         dest: 'dist'
       }
     },
