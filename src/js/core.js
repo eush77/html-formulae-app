@@ -1,6 +1,8 @@
 'use strict';
+var _ = require('lodash');
 
-function Core(_) {
+
+var convert = (function () {
   var methodCaller = function (method) {
     return function (obj) {
       return obj[method]();
@@ -130,7 +132,7 @@ function Core(_) {
   ];
 
   // Recursive descent parser
-  this.convert = function (code) {
+  var convert = function (code) {
     preConvertHooks.forEach(function (hook) {
       code = hook(code);
     });
@@ -213,12 +215,9 @@ function Core(_) {
     }
     return output;
   };
-}
 
-if (typeof(module) != 'undefined') {
-  var _ = require('./lib/lodash.min');
-  module.exports = new Core(_).convert;
-}
-else {
-  window.core = new Core(window._);
-}
+  return convert;
+}());
+
+
+module.exports = convert;

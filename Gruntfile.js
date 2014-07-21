@@ -17,17 +17,17 @@ module.exports = function (grunt) {
     },
     copy: {
       dist: {
-        files: [{
-          expand: true,
-          cwd: 'src',
-          src: '{css,js}/**',
-          dest: 'dist'
-        }, {
-          expand: true,
-          cwd: 'src/html',
-          src: '*',
-          dest: 'dist'
-        }]
+        expand: true,
+        flatten: true,
+        src: 'src/{css,html}/*',
+        dest: 'dist'
+      }
+    },
+    browserify: {
+      index: {
+        files: {
+          'dist/index.js': 'src/js/index.js'
+        }
       }
     },
     clean: ['dist'],
@@ -44,7 +44,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-gh-pages');
+  grunt.loadNpmTasks('grunt-browserify');
   grunt.task.renameTask('mochaTest', 'mocha');
 
-  grunt.registerTask('default', ['jshint', 'mocha', 'copy']);
+  grunt.registerTask('default', ['jshint', 'mocha', 'copy', 'browserify']);
 };

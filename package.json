@@ -23,6 +23,9 @@
     "url": "https://github.com/eush77/html-formulae/issues"
   },
   "homepage": "https://github.com/eush77/html-formulae",
+  "dependencies": {
+    "lodash": "^2.4.1"
+  },
   "devDependencies": {
     "should": "^4.0.4",
     "grunt": "^0.4.5",
@@ -30,6 +33,7 @@
     "grunt-mocha-test": "~0.11.0",
     "grunt-gh-pages": "~0.9.1",
     "grunt-contrib-copy": "~0.5.0",
-    "grunt-contrib-clean": "~0.5.0"
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-browserify": "~2.1.3"
   }
 }

@@ -1,9 +1,11 @@
 'use strict';
+var convert = require('./core');
 
-(function (window) {
+
+(function () {
     var submit = function () {
         var code = document.getElementById('editor').value;
-        var html = document.getElementById('preview').innerHTML = window.core.convert(code);
+        var html = document.getElementById('preview').innerHTML = convert(code);
         document.getElementById('source').value = html ? '<p>' + html + '</p>' : '';
     };
 
@@ -13,4 +15,4 @@
           this.select();
       });
     });
-}(window));
+}());
