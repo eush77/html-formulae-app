@@ -1,5 +1,5 @@
 'use strict';
-var convert = require('./core');
+var convert = require('./convert');
 
 
 (function () {
