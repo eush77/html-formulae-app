@@ -49,5 +49,8 @@ module.exports = function (grunt) {
   grunt.task.renameTask('mochaTest', 'mocha');
 
   grunt.registerTask('test', ['jshint', 'mocha']);
-  grunt.registerTask('default', ['test', 'copy', 'browserify']);
+  grunt.registerTask('build', ['test', 'copy', 'browserify']);
+  // grunt clean
+  // grunt gh-pages
+  grunt.registerTask('default', 'build');
 };
