@@ -47,5 +47,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-browserify');
   grunt.task.renameTask('mochaTest', 'mocha');
 
-  grunt.registerTask('default', ['jshint', 'mocha', 'copy', 'browserify']);
+  grunt.registerTask('test', ['jshint', 'mocha']);
+  grunt.registerTask('default', ['test', 'copy', 'browserify']);
 };
