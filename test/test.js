@@ -87,6 +87,13 @@ describe('Arithmetic and logical operators', function () {
     convert('syl-la-bi-fi-ca-tion').should.equal('syl-la-bi-fi-ca-tion');
     convert('e-mail').should.equal('e&minus;mail'); // Single letters don't count.
     convert('pre-1949').should.equal('pre&minus;1949');
+    convert('``furthest-in-future\'\'').should.equal('&ldquo;furthest-in-future&rdquo;');
+    convert('``furthest-in-future').should.equal('&ldquo;furthest-in-future');
+    convert('furthest-in-future\'\'').should.equal('furthest-in-future&rdquo;');
+    convert('ten-year-old;').should.equal('ten-year-old;');
+    convert('``ho-ho ho-ho\'\'').should.equal('&ldquo;ho-ho ho-ho&rdquo;');
+    convert('``ho-ho ho-ho+\'\'').should.equal('&ldquo;ho-ho ho&minus;ho+&rdquo;');
+    convert('``ho-ho+ ho-ho\'\'').should.equal('&ldquo;ho&minus;ho+ ho-ho&rdquo;');
   });
 });
 

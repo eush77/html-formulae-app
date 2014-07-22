@@ -87,6 +87,22 @@ var convert = (function () {
   }(replaceDict));
 
   var preConvertHooks = [
+    function smartHyphen(code) {
+      var letterBlock = '[a-zA-Z\']{2,}';
+      var beginBlock = '(``)?';
+      var endBlock = '[,:)!?;"]?';
+      var wordRegex = new RegExp(_.template('^${begin}' +
+                                            '(${letters}-)+${letters}' +
+                                            '${end}$',
+                                            {
+                                              letters: letterBlock,
+                                              begin: beginBlock,
+                                              end: endBlock
+                                            }));
+      return code.replace(/\S+/g, function (word) {
+        return wordRegex.test(word) ? word.replace(/-/g, '\\$&') : word;
+      });
+    },
     function skipRegularLetterDoubling(code) {
       var inTextReplacePattern = '$1\\$2';
       ['T', 'B'].forEach(function (char) {
@@ -108,28 +124,7 @@ var convert = (function () {
     },
   ];
 
-  var postConvertHooks = [
-    function smartHyphen(code) {
-      var minus = replaceDict['-'];
-      var punctuation = '[,.:)!?;\'"]?';
-      var space = '(\\s|{.}|{  }|{   })'.replace(new RegExp('\\{(.+?)\\}', 'g'), function (m, s) {
-        return replaceDict[s];
-      });
-      var word = '[a-zA-Z\']{2,}';
-      var re = new RegExp(_.template('(^|${space})((${word}${minus})+${word}${punct}${space}+)*' +
-                                     '(${word}${minus})+${word}${punct}(${space}|$)',
-                                     {
-                                       minus: minus,
-                                       punct: punctuation,
-                                       space: space,
-                                       word: word
-                                     }),
-                          'g');
-      return code.replace(re, function (substr) {
-        return substr.replace(new RegExp(minus, 'g'), '-');
-      });
-    },
-  ];
+  var postConvertHooks = [];
 
   // Recursive descent parser
   var convert = function (code) {
