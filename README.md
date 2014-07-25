@@ -1,6 +1,8 @@
 HTML Formul&aelig; [![Build Status](https://travis-ci.org/eush77/html-formulae.svg?branch=master)](https://travis-ci.org/eush77/html-formulae) [![Dependency Status](https://gemnasium.com/eush77/html-formulae.svg)](https://gemnasium.com/eush77/html-formulae)
 ==================
-Simple formula editor for HTML with pretty natural human-oriented syntax.
+
+**tl;dr**: HTML Formul&aelig; translates formulas in lightweight TeX-inspired syntax to HTML.
+
 ## Example
 Suppose you have to input the following formula in HTML:
 
