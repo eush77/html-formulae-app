@@ -1,5 +1,11 @@
-HTML Formul&aelig; [![Build Status](https://travis-ci.org/eush77/html-formulae.svg?branch=master)](https://travis-ci.org/eush77/html-formulae) [![Dependency Status](https://gemnasium.com/eush77/html-formulae.svg)](https://gemnasium.com/eush77/html-formulae)
-==================
+# HTML Formul&aelig; [![Build Status][travis-badge]][travis] [![Dependency Status][david-badge]][david] [![DevDependency Status][david-dev-badge]][david-dev]
+
+[travis-badge]: https://travis-ci.org/eush77/html-formulae.svg
+[travis]: https://travis-ci.org/eush77/html-formulae
+[david-badge]: https://david-dm.org/eush77/html-formulae.png
+[david]: https://david-dm.org/eush77/html-formulae
+[david-dev-badge]: https://david-dm.org/eush77/html-formulae/dev-status.png
+[david-dev]: https://david-dm.org/eush77/html-formulae#info=devDependencies
 
 **tl;dr**: HTML Formul&aelig; translates formulas in lightweight TeX-inspired syntax to HTML.
 
