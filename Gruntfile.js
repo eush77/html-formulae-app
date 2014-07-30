@@ -6,14 +6,15 @@ module.exports = function (grunt) {
       options: {
         jshintrc: true
       },
-      all: ['Gruntfile.js', 'src/js/**/*.js', 'test/**/*.js']
+      all: ['lib/Gruntfile.js', 'lib/src/**/*.js', 'lib/test/**/*.js',
+            'Gruntfile.js', 'src/js/**/*.js']
     },
     mocha: {
       options: {
         reporter: 'spec',
         require: 'should'
       },
-      all: ['test/**/*.js']
+      all: ['lib/test/**/*.js']
     },
     copy: {
       dist: {

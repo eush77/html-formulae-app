@@ -1,6 +1,6 @@
 'use strict';
 
-var convert = require('./convert');
+var convert = require('../../lib/src/convert');
 
 
 var editor = document.getElementById('editor'),
