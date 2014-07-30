@@ -2,12 +2,20 @@
   "name": "html-formulae",
   "version": "0.3.0",
   "description": "Formula editor for HTML",
+  "author": "Eugene Sharygin <eush77@gmail.com>",
+  "license": "MIT",
+
   "scripts": {
     "test": "grunt test"
   },
+
+  "homepage": "https://github.com/eush77/html-formulae",
   "repository": {
     "type": "git",
     "url": "https://github.com/eush77/html-formulae"
+  },
+  "bugs": {
+    "url": "https://github.com/eush77/html-formulae/issues"
   },
   "keywords": [
     "formula",
@@ -17,12 +25,7 @@
     "html",
     "entities"
   ],
-  "author": "Eugene Sharygin <eush77@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/eush77/html-formulae/issues"
-  },
-  "homepage": "https://github.com/eush77/html-formulae",
+
   "dependencies": {
     "lodash": "^2.4.1"
   },
