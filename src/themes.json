@@ -2,4 +2,8 @@
   "name": "dark",
   "src": "themes/dark.css",
   "icon": "black"
+}, {
+  "name": "light",
+  "src": "themes/light.css",
+  "icon": "white"
 }]
