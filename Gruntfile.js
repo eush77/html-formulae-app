@@ -101,9 +101,10 @@ module.exports = function (grunt) {
   grunt.task.renameTask('mochaTest', 'mocha');
 
   grunt.registerTask('test', ['jshint', 'mocha']);
-  grunt.registerTask('build', ['test', 'copy', 'browserify', 'uglify', 'cssmin', 'htmlmin']);
+  grunt.registerTask('build', ['copy', 'browserify']);
+  grunt.registerTask('minify', ['uglify', 'cssmin', 'htmlmin']);
   // grunt clean
   // grunt gh-pages
   // grunt watch
-  grunt.registerTask('default', 'build');
+  grunt.registerTask('default', ['test', 'build', 'minify']);
 };
