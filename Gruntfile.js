@@ -38,6 +38,13 @@ module.exports = function (grunt) {
         }
       }
     },
+    uglify: {
+      index: {
+        files: {
+          'dist/index.js': 'dist/index.js'
+        }
+      }
+    },
     clean: ['dist'],
     'gh-pages': {
       options: {
@@ -63,11 +70,12 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-gh-pages');
   grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.task.renameTask('mochaTest', 'mocha');
 
   grunt.registerTask('test', ['jshint', 'mocha']);
-  grunt.registerTask('build', ['test', 'copy', 'browserify']);
+  grunt.registerTask('build', ['test', 'copy', 'browserify', 'uglify']);
   // grunt clean
   // grunt gh-pages
   // grunt watch
