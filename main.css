@@ -1,5 +1,4 @@
 body {
-    background-color: black;
     width: 70%;
     margin: 2px auto 0;
     padding: 0;
@@ -13,21 +12,15 @@ textarea {
     padding: 0 0.2em 0;
 }
 div.editor textarea {
-    background-color: #333;
-    color: #ddd;
     font-size: 1.5em;
     font-family: monospace;
 }
 div.source textarea {
-    background-color: #322;
-    color: #aaf;
     font-family: cursive;
     font-size: 0.9em;
     font-style: italic;
 }
 div.preview {
-    background-color: #111;
-    color: #3a3;
     text-align: center;
     font-size: 2em;
     font-family: sans-serif;
@@ -36,14 +29,11 @@ div.preview {
 div.preview p {
     margin: 0;
 }
-div.source {
-    background-color: #322;
-}
 div.help {
-    color: #666;
     width: 70%;
     float: right;
-    border-left: 1px solid #111;
+    border-left-width: 1px;
+    border-left-style: solid;
     padding-left: 0.5em;
     padding-bottom: 0.5em;
 }
@@ -80,17 +70,20 @@ table.symbols {
     border-collapse: collapse;
 }
 table.symbols td {
-    border-bottom: 1px dashed #666;
+    border-bottom-width: 1px;
+    border-bottom-style: dashed;
     padding-top: 3px;
     padding-bottom: 3px;
 }
 table.symbols tr:first-child > td {
-    border-top: 1px dashed #666;
+    border-top-width: 1px;
+    border-top-style: dashed;
 }
 table.symbols td:first-child {
     text-align: center;
     font-family: monospace;
-    border-right: 1px dashed #666;
+    border-right-width: 1px;
+    border-right-style: dashed;
 }
 table.symbols td:last-child {
     text-align: left;
@@ -106,4 +99,20 @@ li:last-child::after {
 }
 li.no-punctuation::after {
     content: "";
+}
+
+/* Theme icons */
+.theme-icons {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 15%;
+}
+.theme-icons .icon {
+    display: float;
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-width: 1px;
+    border-style: solid;
 }
