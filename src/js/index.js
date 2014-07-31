@@ -18,3 +18,6 @@ editor.addEventListener('keyup', function () {
 source.addEventListener('click', function () {
   this.select();
 });
+
+
+require('./themes').init();

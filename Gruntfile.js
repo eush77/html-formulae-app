@@ -18,12 +18,18 @@ module.exports = function (grunt) {
     },
     copy: {
       dist: {
-        expand: true,
-        flatten: true,
-        src: 'src/{css,html}/**/*',
-        filter: 'isFile',
-        dest: 'dist'
-      }
+        files: [{
+          expand: true,
+          cwd: 'src/css',
+          src: '**',
+          dest: 'dist'
+        }, {
+          expand: true,
+          cwd: 'src/html',
+          src: '**',
+          dest: 'dist'
+        }]
+      },
     },
     browserify: {
       index: {
