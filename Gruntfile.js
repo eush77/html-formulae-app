@@ -53,6 +53,22 @@ module.exports = function (grunt) {
         dest: 'dist/'
       },
     },
+    htmlmin: {
+      options: {
+        removeComments: true,
+        collapseWhitespace: true,
+        collapseBooleanAttributes: true,
+        removeAttributeQuotes: true,
+        removeRedundantAttributes: true,
+        removeEmptyAttributes: true,
+        removeOptionalTags: true
+      },
+      index: {
+        files: {
+          'dist/index.html': 'dist/index.html'
+        }
+      }
+    },
     clean: ['dist'],
     'gh-pages': {
       options: {
@@ -80,11 +96,12 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.task.renameTask('mochaTest', 'mocha');
 
   grunt.registerTask('test', ['jshint', 'mocha']);
-  grunt.registerTask('build', ['test', 'copy', 'browserify', 'uglify', 'cssmin']);
+  grunt.registerTask('build', ['test', 'copy', 'browserify', 'uglify', 'cssmin', 'htmlmin']);
   // grunt clean
   // grunt gh-pages
   // grunt watch
