@@ -39,6 +39,16 @@ module.exports = function (grunt) {
       },
       src: '**'
     },
+    watch: {
+      script: {
+        files: ['lib/src/**/*.js', 'lib/test/**/*.js', 'src/js/**/*.js'],
+        tasks: ['build']
+      },
+      'styles&markup': {
+        files: ['src/css/**/*.css', 'src/html/**/*.html'],
+        tasks: ['copy']
+      }
+    },
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -47,11 +57,13 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-gh-pages');
   grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.task.renameTask('mochaTest', 'mocha');
 
   grunt.registerTask('test', ['jshint', 'mocha']);
   grunt.registerTask('build', ['test', 'copy', 'browserify']);
   // grunt clean
   // grunt gh-pages
+  // grunt watch
   grunt.registerTask('default', 'build');
 };
