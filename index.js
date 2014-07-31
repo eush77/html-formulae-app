@@ -7045,6 +7045,9 @@ require('./themes').init();
 },{"../../lib/src/convert":1,"./themes":4}],4:[function(require,module,exports){
 'use strict';
 
+var _ = require('lodash');
+
+
 var $themeIcons = null;
 var $themeLink = null;
 
@@ -7086,7 +7089,9 @@ var putIcon = (function () {
 
 var installTheme = function (theme) {
   var icon = putIcon(theme.icon);
-  icon.title = 'Change theme: ' + theme.name;
+  icon.title = _.template('${name} theme', {
+    name: theme.name[0].toUpperCase() + theme.name.slice(1)
+  });
   icon.addEventListener('click', function () {
     loadTheme(theme);
     storage.save(theme.name);
@@ -7111,7 +7116,7 @@ exports.init = function () {
   }
 };
 
-},{"../themes.json":5}],5:[function(require,module,exports){
+},{"../themes.json":5,"lodash":2}],5:[function(require,module,exports){
 module.exports=[{
   "name": "dark",
   "src": "themes/dark.css",
