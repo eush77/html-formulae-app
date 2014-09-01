@@ -3,17 +3,19 @@
   <head>
     <title>HTML Formul&aelig;</title>
     <link type="text/css" rel="stylesheet" href="main.css"/>
-    <link type="text/css" rel="stylesheet" id="theme" href="themes/light.css"/>
+    <link type="text/css" rel="stylesheet" id="theme-link" data-name="light" href="themes/light.css"/>
   </head>
   <body>
-    <div class="editor">
-      <textarea id="editor" autofocus placeholder="Your code here"></textarea>
-    </div>
-    <div class="preview">
-      <p id="preview"></p>
-    </div>
-    <div class="source">
-      <textarea id="source" readonly></textarea>
+    <div id="converter">
+      <div class="editor">
+        <textarea autofocus placeholder="Your code here"></textarea>
+      </div>
+      <div class="preview">
+        <p></p>
+      </div>
+      <div class="source">
+        <textarea readonly></textarea>
+      </div>
     </div>
     <div class="help">
       <h3 class="syntax">Syntax conventions:</h3>

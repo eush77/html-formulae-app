@@ -25,6 +25,9 @@
     "entities"
   ],
   "dependencies": {
+    "backbone": "^1.1.2",
+    "backbone.localstorage": "^1.1.13",
+    "jquery": "^2.1.1",
     "lodash.template": "^2.4.1"
   },
   "devDependencies": {

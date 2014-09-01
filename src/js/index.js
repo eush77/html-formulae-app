@@ -1,23 +1,9 @@
 'use strict';
 
-var convert = require('../../lib/src/convert');
+// Populate Backbone with jQuery and LocalStorage.
+require('backbone').$ = require('jquery');
+require('backbone').LocalStorage = require('backbone.localstorage');
 
-
-var editor = document.getElementById('editor'),
-    preview = document.getElementById('preview'),
-    source = document.getElementById('source');
-
-
-editor.addEventListener('keyup', function () {
-  var html = convert(editor.value);
-  preview.innerHTML = html;
-  source.value = html ? '<p>' + html + '</p>' : '';
-});
-
-
-source.addEventListener('click', function () {
-  this.select();
-});
-
-
-require('./themes').init();
+// Start the app.
+var app = new (require('./views').AppView)();
+app.render();
