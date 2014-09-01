@@ -21,6 +21,8 @@
   "boss": true,
   "eqnull": true,
   "evil": true,
+  "laxbreak": true,
+  "laxcomma": true,
   "supernew": true,
 
   "white": true,
