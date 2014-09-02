@@ -77,6 +77,15 @@ module.exports = function (grunt) {
       src: '**'
     },
     watch: {
+      options: {
+        livereload: true
+      },
+      config: {
+        files: ['Gruntfile.js'],
+        options: {
+          reload: true
+        }
+      },
       script: {
         files: ['lib/src/**/*.js', 'lib/test/**/*.js', 'src/js/**/*.js'],
         tasks: ['build']
