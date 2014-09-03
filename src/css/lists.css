@@ -1,0 +1,26 @@
+/* List style: 1), 2), 3)... */
+
+.list-paren-style {
+    list-style: none outside;
+    counter-reset: item;
+}
+
+.list-paren-style > li::before {
+    content: counter(item) ")\2002"; /* &ensp; */
+    counter-increment: item;
+    margin-left: -1.4em;
+}
+
+/* Auto-terminating lists */
+
+.list-auto-punctuation > li::after {
+    content: ";";
+}
+
+.list-auto-punctuation > li:last-child::after {
+    content: ".";
+}
+
+.list-auto-punctuation > li.no-auto-punctuation::after {
+    content: "";
+}

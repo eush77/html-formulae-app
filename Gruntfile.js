@@ -17,19 +17,24 @@ module.exports = function (grunt) {
       all: ['lib/test/**/*.js']
     },
     copy: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: 'src/css',
-          src: '**',
-          dest: 'dist'
-        }, {
-          expand: true,
-          cwd: 'src/html',
-          src: '**',
-          dest: 'dist'
-        }]
+      css: {
+        expand: true,
+        cwd: 'src/css',
+        src: 'themes/*.css',
+        dest: 'dist'
       },
+      html: {
+        expand: true,
+        cwd: 'src/html',
+        src: '**',
+        dest: 'dist'
+      }
+    },
+    concat: {
+      css: {
+        src: 'src/css/*.css',
+        dest: 'dist/main.css'
+      }
     },
     browserify: {
       index: {
@@ -86,13 +91,17 @@ module.exports = function (grunt) {
           reload: true
         }
       },
-      script: {
+      js: {
         files: ['lib/src/**/*.js', 'lib/test/**/*.js', 'src/js/**/*.js'],
-        tasks: ['build']
+        tasks: ['test', 'browserify']
       },
-      'styles&markup': {
-        files: ['src/css/**/*.css', 'src/html/**/*.html'],
-        tasks: ['copy']
+      css: {
+        files: ['src/css/**/*.css'],
+        tasks: ['concat:css', 'copy:css']
+      },
+      html: {
+        files: ['src/html/**/*.html'],
+        tasks: ['copy:html']
       }
     },
   });
@@ -100,6 +109,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-gh-pages');
   grunt.loadNpmTasks('grunt-browserify');
@@ -110,7 +120,7 @@ module.exports = function (grunt) {
   grunt.task.renameTask('mochaTest', 'mocha');
 
   grunt.registerTask('test', ['jshint', 'mocha']);
-  grunt.registerTask('build', ['copy', 'browserify']);
+  grunt.registerTask('build', ['concat', 'copy', 'browserify']);
   grunt.registerTask('minify', ['uglify', 'cssmin', 'htmlmin']);
   // grunt clean
   // grunt gh-pages
