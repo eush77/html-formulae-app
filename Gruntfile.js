@@ -2,6 +2,8 @@
 
 module.exports = function (grunt) {
   grunt.initConfig({
+
+    // Test.
     jshint: {
       options: {
         jshintrc: true
@@ -16,6 +18,14 @@ module.exports = function (grunt) {
       },
       all: ['lib/test/**/*.js']
     },
+
+    // Build.
+    concat: {
+      css: {
+        src: 'src/css/*.css',
+        dest: 'dist/main.css'
+      }
+    },
     copy: {
       css: {
         expand: true,
@@ -28,12 +38,6 @@ module.exports = function (grunt) {
         cwd: 'src/html',
         src: '**',
         dest: 'dist'
-      }
-    },
-    concat: {
-      css: {
-        src: 'src/css/*.css',
-        dest: 'dist/main.css'
       }
     },
     browserify: {
@@ -74,13 +78,16 @@ module.exports = function (grunt) {
         }
       }
     },
-    clean: ['dist'],
+
+    // Publish.
     'gh-pages': {
       options: {
         base: 'dist'
       },
       src: '**'
     },
+
+    // Util.
     watch: {
       options: {
         livereload: true
@@ -104,19 +111,25 @@ module.exports = function (grunt) {
         tasks: ['copy:html']
       }
     },
+    clean: ['dist'],
   });
 
+  // Test.
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-mocha-test');
-  grunt.loadNpmTasks('grunt-contrib-copy');
+  // Build.
   grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-gh-pages');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
+  // Publish.
+  grunt.loadNpmTasks('grunt-gh-pages');
+  // Util.
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+
   grunt.task.renameTask('mochaTest', 'mocha');
 
   grunt.registerTask('test', ['jshint', 'mocha']);
