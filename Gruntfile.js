@@ -96,7 +96,8 @@ module.exports = function (grunt) {
         files: ['Gruntfile.js'],
         options: {
           reload: true
-        }
+        },
+        tasks: ['jshint']
       },
       js: {
         files: ['lib/src/**/*.js', 'lib/test/**/*.js', 'src/js/**/*.js'],
