@@ -20,6 +20,15 @@ module.exports = function (grunt) {
     },
 
     // Build.
+    jade: {
+      options: {
+        client: false,
+      },
+      index: {
+        src: 'src/html/index.jade',
+        dest: 'dist'
+      }
+    },
     concat: {
       css: {
         src: 'src/css/*.css',
@@ -27,16 +36,10 @@ module.exports = function (grunt) {
       }
     },
     copy: {
-      css: {
+      themes: {
         expand: true,
         cwd: 'src/css',
         src: 'themes/*.css',
-        dest: 'dist'
-      },
-      html: {
-        expand: true,
-        cwd: 'src/html',
-        src: '**',
         dest: 'dist'
       }
     },
@@ -105,11 +108,11 @@ module.exports = function (grunt) {
       },
       css: {
         files: ['src/css/**/*.css'],
-        tasks: ['concat:css', 'copy:css']
+        tasks: ['concat:css', 'copy:themes']
       },
       html: {
-        files: ['src/html/**/*.html'],
-        tasks: ['copy:html']
+        files: ['src/html/**/*.jade'],
+        tasks: ['jade']
       }
     },
     clean: ['dist'],
@@ -119,6 +122,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-mocha-test');
   // Build.
+  grunt.loadNpmTasks('grunt-jade');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-browserify');
@@ -134,7 +138,7 @@ module.exports = function (grunt) {
   grunt.task.renameTask('mochaTest', 'mocha');
 
   grunt.registerTask('test', ['jshint', 'mocha']);
-  grunt.registerTask('build', ['concat', 'copy', 'browserify']);
+  grunt.registerTask('build', ['jade', 'concat', 'copy', 'browserify']);
   grunt.registerTask('minify', ['uglify', 'cssmin', 'htmlmin']);
   // grunt clean
   // grunt gh-pages
