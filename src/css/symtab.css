@@ -1,34 +1,28 @@
-div.symbols {
-    padding: 0;
-    border: none;
-    margin: 0;
+.symtab {
     margin-top: 0.3em;
-}
-
-table.symbols {
     border-collapse: collapse;
 }
 
-table.symbols td {
+.symtab tr:first-child {
+    border-top-width: 1px;
+    border-top-style: dashed;
+}
+
+.symtab td {
     border-bottom-width: 1px;
     border-bottom-style: dashed;
     padding-top: 3px;
     padding-bottom: 3px;
 }
 
-table.symbols tr:first-child > td {
-    border-top-width: 1px;
-    border-top-style: dashed;
-}
-
-table.symbols td:first-child {
+.symtab td:first-child {
     text-align: center;
     font-family: monospace;
     border-right-width: 1px;
     border-right-style: dashed;
 }
 
-table.symbols td:last-child {
+.symtab td:last-child {
     text-align: left;
     padding-left: 0.5em;
 }

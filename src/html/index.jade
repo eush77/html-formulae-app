@@ -6,62 +6,61 @@ html
     link(type='text/css', rel='stylesheet', id='theme-link', data-name='light', href='themes/light.css')
   body
     #converter
-      .editor: textarea(autofocus, placeholder='Your code here')
-      .preview: p
-      .source: textarea(readonly)
-    .help
-      h3.syntax Syntax conventions:
-      ul.syntax.list-auto-punctuation
-        li indices and powers: &ldquo;x^2&rdquo;, &ldquo;x_2&rdquo;
-        li any correct HTML (if properly escaped), including tags and entities
-        li.no-auto-punctuation special symbol sequences:
-          // Set margins to the border-collapsed table.
-          .symbols
-            table.symbols
-              tbody
-                tr
-                  td &ldquo;mbscriptA&rdquo;&thinsp;&ndash;&thinsp;&ldquo;mbscriptZ&rdquo;, &ldquo;mbscripta&rdquo;&thinsp;&ndash;&thinsp;&ldquo;mbscriptz&rdquo;
-                  td Mathematical bold script letters (&#x1d4d0;&ndash;&#x1d4e9;, &#x1d4ea;&ndash;&#x1d503;)
-                tr
-                  td &ldquo;setF&rdquo;, &ldquo;setC&rdquo;, &ldquo;setR&rdquo;, &ldquo;setQ&rdquo;, &ldquo;setZ&rdquo;, &ldquo;setN&rdquo;, &ldquo;setP&rdquo;
-                  td Abstract and common number sets
-                tr
-                  td &ldquo;+&rdquo;, &ldquo;-&rdquo;, &ldquo;*&rdquo;, &ldquo;/&rdquo;, &ldquo;&amp;&amp;&rdquo;, &ldquo;||&rdquo;, &ldquo;!&rdquo;
-                  td Arithmetic and logical operators
-                tr
-                  td &ldquo;=&rdquo;, &ldquo;==&rdquo;, &ldquo;&lt;&rdquo;, &ldquo;&lt;=&rdquo;, &ldquo;&gt;&rdquo;, &ldquo;&gt;=&rdquo;, &ldquo;!=&rdquo;, &ldquo;/=&rdquo;, &ldquo;~&rdquo;, &ldquo;~~&rdquo;, &ldquo;&lt;&lt;&rdquo;, &ldquo;&gt;&gt;&rdquo;
-                  td Comparison relations
-                tr
-                  td &ldquo;&lt;=&gt;&rdquo;, &ldquo;=&gt;&rdquo;, &ldquo;=&lt;&rdquo;, &ldquo;&lt;==&gt;&rdquo;, &ldquo;==&gt;&rdquo;, &ldquo;==&lt;&rdquo;, &ldquo;|-&rdquo;, &ldquo;|=&rdquo;, &ldquo;TT&rdquo;, &ldquo;BB&rdquo;
-                  td Inference relations and constants
-                tr
-                  td &ldquo;&lt;-&gt;&rdquo;, &ldquo;-&gt;&rdquo;, &ldquo;&lt;-&rdquo;, &ldquo;&lt;--&gt;&rdquo;, &ldquo;--&gt;&rdquo;, &ldquo;&lt;--&rdquo;
-                  td Arrows
-                tr
-                  td &ldquo;]]&rdquo;, &ldquo;:=&rdquo;, &ldquo;=def=&rdquo;
-                  td &ldquo;Let&rdquo; and defining signs
-                tr
-                  td &ldquo;+-&rdquo;, &ldquo;-+&rdquo;, &ldquo;&amp;&rdquo;, &ldquo;oo&rdquo;
-                  td Various symbols
-                tr
-                  td &ldquo;---&rdquo;, &ldquo;--&rdquo;
-                  td Dashes: em-dash and en-dash
-                tr
-                  td &ldquo;``&rdquo;, &ldquo;''&rdquo;, &ldquo;&lt;&lt;&lt;&rdquo;, &ldquo;&gt;&gt;&gt;&rdquo;
-                  td Quotation marks
-                tr
-                  td &ldquo;&#9251;&#9251;&#9251;&rdquo;, &ldquo;&#9251;&#9251;&rdquo;, &ldquo;.&rdquo;
-                  td Whitespace sequences: em-space, en-space, and thin-space (respectively)
-      h3.note Notes:
-      ol.notes.list-paren-style.list-auto-punctuation
-        li &ldquo;\&rdquo; is the escape character
-        li &ldquo;{}&rdquo;-groupings in indices and powers are available
-        li indices and powers can also be nested: x^{x_0}
-        li newlines are encoded and preserved
-        li hyphens are not interpreted as minuses in compound words
-        li &ldquo;TT&rdquo; or &ldquo;BB&rdquo; are left as is, if found close to an alphanumeric character
-        li &ldquo;&hArr;&rdquo;, &ldquo;&rArr;&rdquo;, and &ldquo;&lArr;&rdquo; and their long equivalents preserve appropriate spacing on both sides
+      textarea.editor(autofocus, placeholder='Your code here')
+      p.preview
+      textarea.source(readonly)
     #theme-icons.theme-icons
+    .help
+      .syntax
+        h3 Syntax conventions:
+        ul.list-auto-punctuation
+          li indices and powers: &ldquo;x^2&rdquo;, &ldquo;x_2&rdquo;
+          li any correct HTML (if properly escaped), including tags and entities
+          li.no-auto-punctuation special symbol sequences:
+            table.symtab
+              tr
+                td &ldquo;mbscriptA&rdquo;&thinsp;&ndash;&thinsp;&ldquo;mbscriptZ&rdquo;, &ldquo;mbscripta&rdquo;&thinsp;&ndash;&thinsp;&ldquo;mbscriptz&rdquo;
+                td Mathematical bold script letters (&#x1d4d0;&ndash;&#x1d4e9;, &#x1d4ea;&ndash;&#x1d503;)
+              tr
+                td &ldquo;setF&rdquo;, &ldquo;setC&rdquo;, &ldquo;setR&rdquo;, &ldquo;setQ&rdquo;, &ldquo;setZ&rdquo;, &ldquo;setN&rdquo;, &ldquo;setP&rdquo;
+                td Abstract and common number sets
+              tr
+                td &ldquo;+&rdquo;, &ldquo;-&rdquo;, &ldquo;*&rdquo;, &ldquo;/&rdquo;, &ldquo;&amp;&amp;&rdquo;, &ldquo;||&rdquo;, &ldquo;!&rdquo;
+                td Arithmetic and logical operators
+              tr
+                td &ldquo;=&rdquo;, &ldquo;==&rdquo;, &ldquo;&lt;&rdquo;, &ldquo;&lt;=&rdquo;, &ldquo;&gt;&rdquo;, &ldquo;&gt;=&rdquo;, &ldquo;!=&rdquo;, &ldquo;/=&rdquo;, &ldquo;~&rdquo;, &ldquo;~~&rdquo;, &ldquo;&lt;&lt;&rdquo;, &ldquo;&gt;&gt;&rdquo;
+                td Comparison relations
+              tr
+                td &ldquo;&lt;=&gt;&rdquo;, &ldquo;=&gt;&rdquo;, &ldquo;=&lt;&rdquo;, &ldquo;&lt;==&gt;&rdquo;, &ldquo;==&gt;&rdquo;, &ldquo;==&lt;&rdquo;, &ldquo;|-&rdquo;, &ldquo;|=&rdquo;, &ldquo;TT&rdquo;, &ldquo;BB&rdquo;
+                td Inference relations and constants
+              tr
+                td &ldquo;&lt;-&gt;&rdquo;, &ldquo;-&gt;&rdquo;, &ldquo;&lt;-&rdquo;, &ldquo;&lt;--&gt;&rdquo;, &ldquo;--&gt;&rdquo;, &ldquo;&lt;--&rdquo;
+                td Arrows
+              tr
+                td &ldquo;]]&rdquo;, &ldquo;:=&rdquo;, &ldquo;=def=&rdquo;
+                td &ldquo;Let&rdquo; and defining signs
+              tr
+                td &ldquo;+-&rdquo;, &ldquo;-+&rdquo;, &ldquo;&amp;&rdquo;, &ldquo;oo&rdquo;
+                td Various symbols
+              tr
+                td &ldquo;---&rdquo;, &ldquo;--&rdquo;
+                td Dashes: em-dash and en-dash
+              tr
+                td &ldquo;``&rdquo;, &ldquo;''&rdquo;, &ldquo;&lt;&lt;&lt;&rdquo;, &ldquo;&gt;&gt;&gt;&rdquo;
+                td Quotation marks
+              tr
+                td &ldquo;&#9251;&#9251;&#9251;&rdquo;, &ldquo;&#9251;&#9251;&rdquo;, &ldquo;.&rdquo;
+                td Whitespace sequences: em-space, en-space, and thin-space (respectively)
+      .notes
+        h3 Notes:
+        ol.list-paren-style.list-auto-punctuation
+          li &ldquo;\&rdquo; is the escape character
+          li &ldquo;{}&rdquo;-groupings in indices and powers are available
+          li indices and powers can also be nested: x^{x_0}
+          li newlines are encoded and preserved
+          li hyphens are not interpreted as minuses in compound words
+          li &ldquo;TT&rdquo; or &ldquo;BB&rdquo; are left as is, if found close to an alphanumeric character
+          li &ldquo;&hArr;&rdquo;, &ldquo;&rArr;&rdquo;, and &ldquo;&lArr;&rdquo; and their long equivalents preserve appropriate spacing on both sides
 
     block scripts
       script(src='index.js')

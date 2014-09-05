@@ -14,8 +14,8 @@ var ConverterView = Backbone.View.extend({
   Model: Converter,
 
   initialize: function () {
-    this.$preview = this.$('.preview>p');
-    this.$source = this.$('.source>textarea');
+    this.$preview = this.$('.preview');
+    this.$source = this.$('.source');
 
     this.listenTo(this.model, 'change:output', this.render);
   },
@@ -28,8 +28,8 @@ var ConverterView = Backbone.View.extend({
   },
 
   events: {
-    'keyup .editor>textarea': 'changeInput',
-    'click .source>textarea': 'selectOutput'
+    'keyup .editor': 'changeInput',
+    'click .source': 'selectOutput'
   },
 
   changeInput: function (event) {
@@ -45,7 +45,7 @@ var ConverterView = Backbone.View.extend({
 var ThemeIconView = Backbone.View.extend({
   Model: Theme,
 
-  className: 'icon',
+  tagName: 'i',
 
   initialize: function (options) {
     this.currentTheme = options.currentTheme;

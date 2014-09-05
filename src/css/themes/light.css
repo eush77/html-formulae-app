@@ -1,40 +1,39 @@
 body {
-    background-color: white;
+    background: white;
 }
-div.editor textarea {
+
+.editor {
     background-color: #E7EFF3;
     color: black;
 }
-div.source textarea {
-    background-color: #B4B7BD;
-    color: #413831;
-}
-div.preview {
+
+.preview {
     background-color: #E6E24D;
     color: #355D80;
 }
-div.source {
+
+.source {
     background-color: #B4B7BD;
+    color: #413831;
 }
-div.help {
+
+.theme-icons i {
+    border-color: black;
+}
+
+.help {
     color: #444;
     border-left-color: #aaa;
 }
 
-
-/* Syntax character table */
-table.symbols td {
-    border-bottom-color: #666;
-}
-table.symbols tr:first-child > td {
+.symtab tr:first-child {
     border-top-color: #666;
 }
-table.symbols td:first-child {
-    border-right-color: #666;
+
+.symtab td {
+    border-bottom-color: #666;
 }
 
-
-/* Theme icons */
-.theme-icons .icon {
-    border-color: black;
+.symtab td:first-child {
+    border-right-color: #666;
 }

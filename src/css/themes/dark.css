@@ -1,40 +1,39 @@
 body {
     background: url(http://subtlepatterns.com/patterns/zwartevilt.png) black;
 }
-div.editor textarea {
+
+.editor {
     background-color: #333;
     color: #ddd;
 }
-div.source textarea {
-    background-color: #322;
-    color: #aaf;
-}
-div.preview {
+
+.preview {
     background-color: #111;
     color: #3a3;
 }
-div.source {
+
+.source {
     background-color: #322;
+    color: #aaf;
 }
-div.help {
+
+.theme-icons i {
+    border-color: white;
+}
+
+.help {
     color: #666;
-    border-left-color: #111;
+    border-left-color: #222;
 }
 
-
-/* Syntax character table */
-table.symbols td {
-    border-bottom-color: #666;
-}
-table.symbols tr:first-child > td {
+.symtab tr:first-child {
     border-top-color: #666;
 }
-table.symbols td:first-child {
-    border-right-color: #666;
+
+.symtab td {
+    border-bottom-color: #666;
 }
 
-
-/* Theme icons */
-.theme-icons .icon {
-    border-color: white;
+.symtab td:first-child {
+    border-right-color: #666;
 }

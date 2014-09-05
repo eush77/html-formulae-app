@@ -4,38 +4,7 @@ body {
     padding: 0;
 }
 
-textarea {
-    box-sizing: border-box;
-    width: 100%;
-    outline: none;
-    border: none;
-    margin: 0;
-    padding: 0 0.2em 0;
-}
-
-div.editor textarea {
-    font-size: 1.5em;
-    font-family: monospace;
-}
-
-div.source textarea {
-    font-family: cursive;
-    font-size: 0.9em;
-    font-style: italic;
-}
-
-div.preview {
-    text-align: center;
-    font-size: 2em;
-    font-family: sans-serif;
-    padding: 0.5em;
-}
-
-div.preview p {
-    margin: 0;
-}
-
-div.help {
+.help {
     width: 70%;
     float: right;
     border-left-width: 1px;
@@ -44,15 +13,12 @@ div.help {
     padding-bottom: 0.5em;
 }
 
-div.help * {
-    margin: 0;
-}
-
-div.help h3 {
+.help h3 {
     margin-top: 0.8em;
     margin-bottom: 0.1em;
+    letter-spacing: 1px;
 }
 
-div.help h3 {
-    letter-spacing: 1px;
+.help ul, .help ol {
+  margin: 0;
 }
