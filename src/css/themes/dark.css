@@ -1,5 +1,5 @@
 body {
-    background-color: black;
+    background: url(http://subtlepatterns.com/patterns/zwartevilt.png) black;
 }
 div.editor textarea {
     background-color: #333;
