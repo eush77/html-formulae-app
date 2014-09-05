@@ -8,15 +8,15 @@ module.exports = function (grunt) {
       options: {
         jshintrc: true
       },
-      all: ['lib/Gruntfile.js', 'lib/src/**/*.js', 'lib/test/**/*.js',
-            'Gruntfile.js', 'src/js/**/*.js']
+      lib: ['lib/Gruntfile.js', 'lib/src/**/*.js', 'lib/test/**/*.js'],
+      js: ['Gruntfile.js', 'src/js/**/*.js']
     },
     mocha: {
       options: {
         reporter: 'spec',
         require: 'should'
       },
-      all: ['lib/test/**/*.js']
+      lib: ['lib/test/**/*.js']
     },
 
     // Build.
@@ -100,11 +100,15 @@ module.exports = function (grunt) {
         options: {
           reload: true
         },
-        tasks: ['jshint']
+        tasks: ['jshint:js']
+      },
+      lib: {
+        files: ['lib/src/**/*.js', 'lib/test/**/*.js'],
+        tasks: ['test-lib', 'browserify']
       },
       js: {
-        files: ['lib/src/**/*.js', 'lib/test/**/*.js', 'src/js/**/*.js'],
-        tasks: ['test', 'browserify']
+        files: ['src/js/**/*.js'],
+        tasks: ['test-js', 'browserify']
       },
       css: {
         files: ['src/css/**/*.css'],
@@ -137,7 +141,9 @@ module.exports = function (grunt) {
 
   grunt.task.renameTask('mochaTest', 'mocha');
 
-  grunt.registerTask('test', ['jshint', 'mocha']);
+  grunt.registerTask('test-lib', ['jshint:lib', 'mocha:lib']);
+  grunt.registerTask('test-js', ['jshint:js']);
+  grunt.registerTask('test', ['test-lib', 'test-js']);
   grunt.registerTask('build', ['jade', 'concat', 'copy', 'browserify']);
   grunt.registerTask('minify', ['uglify', 'cssmin', 'htmlmin']);
   // grunt clean
