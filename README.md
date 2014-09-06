@@ -30,3 +30,6 @@ Two main features of &ldquo;HTML Formul&aelig;&rdquo; include subscript/superscr
 Replacement table available laid out in the interface page include sequences for various mathematic symbols and punctuation marks. Punctuation marks include dashes (em-dash and en-dash), quotes (both double and angle marks), and whitespace characters (em-space, en-space, thin-space), which can make &ldquo;HTML Formul&aelig;&rdquo; suitable for plain text editing of HTML-encoded texts.
 
 HTML tags and entities could also be taken into play (if properly escaped). You may notice some of those in the example above, e.g. `\&forall;`.
+
+### History
+Formulas can be saved and restored via the interface button or keyboard shortcut (<kbd>Ctrl</kbd>+<kbd>Enter</kbd>). Saved formulas are preserved between sessions in LocalStorage.
