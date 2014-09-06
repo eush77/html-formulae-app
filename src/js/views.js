@@ -160,7 +160,7 @@ var HistoryEntryView = Backbone.View.extend({
   },
 
   pop: function (event) {
-    this.model.collection.remove(this.model);
+    this.model.destroy();
     event.stopPropagation();
   }
 });
@@ -229,7 +229,9 @@ var HistoryView = Backbone.View.extend({
   },
 
   pushToHistory: function () {
-    this.model.unshift(this.converter.clone());
+    this.model.create(this.converter.clone().set({
+      id: this.model.nextId--
+    }), {at: 0});
   }
 });
 

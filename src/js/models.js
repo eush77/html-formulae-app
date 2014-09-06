@@ -2,7 +2,8 @@
 
 var convert = require('../../lib/src/convert');
 
-var Backbone = require('backbone');
+var Backbone = require('backbone')
+  , _ = require('underscore');
 
 
 /**
@@ -66,7 +67,40 @@ exports.CurrentTheme = exports.Theme.extend({
 
 /**
  * History of formulas.
+ * Persistently stored in LocalStorage.
  */
 exports.History = Backbone.Collection.extend({
-  model: exports.Converter
+  model: exports.Converter,
+
+  localStorage: new Backbone.LocalStorage('history'),
+
+  // While individual converters can be stored out of order,
+  //   the entire collection grows only on one of its ends.
+  // Thus, if one element is added after another, then it is
+  //   guaranteed that it is located above in the history stack.
+  // This insertion order is mirrored by this variable.
+  // Its domain is negative to avoid collisions with existing IDs.
+  nextId: -1,
+
+  initialize: function () {
+    // These lines rely on the synchrony of LocalStorage.
+    this.once('sync', this.renumerate, this);
+    this.fetch();
+  },
+
+  // Item IDs will constantly increase over time,
+  //   so it is necessary to renumerate them on sync.
+  // But the most important reason to do it is to normalize IDs
+  //   to keep them non-negative for further insertions.
+  renumerate: function () {
+    this.reset(_.chain(this.models)
+                .sortBy('id')
+                .each(function (model) {
+                  model.sync('delete', model);
+                })
+                .value());
+    this.each(function (model, index) {
+      model.save('id', index);
+    });
+  }
 });
