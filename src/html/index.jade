@@ -10,6 +10,13 @@ html
       p.preview
       textarea.source(readonly)
     #theme-icons.theme-icons
+    #history.history
+      button.push(disabled) &#x21e9; Push to history
+      ul
+      script#history-entry-template(type='text/template')
+        span.pop
+        .output <%= output %>
+        .input <%- input %>
     .help
       .syntax
         h3 Syntax conventions:

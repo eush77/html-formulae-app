@@ -4,9 +4,11 @@ var Converter = require('./models').Converter
   , Themes = require('./models').Themes
   , Theme = require('./models').Theme
   , CurrentTheme = require('./models').CurrentTheme
+  , History = require('./models').History
   , themes = require('../themes.json');
 
 var Backbone = require('backbone')
+  , $ = require('jquery')
   , template = require('lodash.template');
 
 
@@ -14,9 +16,11 @@ var ConverterView = Backbone.View.extend({
   Model: Converter,
 
   initialize: function () {
+    this.$editor = this.$('.editor');
     this.$preview = this.$('.preview');
     this.$source = this.$('.source');
 
+    this.listenTo(this.model, 'change:input', this.updateInput);
     this.listenTo(this.model, 'change:output', this.render);
   },
 
@@ -25,6 +29,13 @@ var ConverterView = Backbone.View.extend({
     this.$preview.html(output);
     this.$source.val(output ? '<p>' + output + '</p>' : '');
     return this;
+  },
+
+  updateInput: function () {
+    var input = this.model.get('input');
+    if (this.$editor.val() != input) {
+      this.$editor.val(input);
+    }
   },
 
   events: {
@@ -117,12 +128,119 @@ var CurrentThemeView = Backbone.View.extend({
 });
 
 
+var HistoryEntryView = Backbone.View.extend({
+  Model: Converter,
+
+  tagName: 'li',
+
+  template: function () {
+    return template($('#history-entry-template').html());
+  },
+
+  initialize: function (options) {
+    this.template = this.template();
+    this.converter = options.converter;
+  },
+
+  render: function () {
+    this.$el.html(this.template(this.model.attributes));
+    return this;
+  },
+
+  events: {
+    'mousedown': function (event) {
+      event.preventDefault();
+    },
+    'click': 'restore',
+    'click .pop': 'pop'
+  },
+
+  restore: function () {
+    this.converter.set('input', this.model.get('input'));
+  },
+
+  pop: function (event) {
+    this.model.collection.remove(this.model);
+    event.stopPropagation();
+  }
+});
+
+
+var HistoryView = Backbone.View.extend({
+  Model: History,
+
+  initialize: function (options) {
+    this.converter = options.converter;
+    this.$pushButton = this.$('.push');
+    this.$list = this.$('ul');
+
+    this.views = this.model.collect(function (entry) {
+      return new HistoryEntryView({
+        model: entry,
+        converter: options.converter
+      });
+    });
+
+    this.listenTo(this.model, 'add', function (m, c, options) {
+      this.addEntry(options.at);
+    });
+    this.listenTo(this.model, 'remove', function (m, c, options) {
+      this.removeEntry(options.index);
+    });
+    this.listenTo(this.converter, 'change:input', this.reactivatePushButton);
+  },
+
+  render: function () {
+    this.reactivatePushButton();
+    this.$list.empty();
+    this.views.forEach(function (entryView) {
+      this.$list.append(entryView.render().el);
+    }, this);
+    return this;
+  },
+
+  addEntry: function (at) {
+    var entryView = new HistoryEntryView({
+      model: this.model.at(at),
+      converter: this.converter
+    });
+    this.views.splice(at, 0, entryView);
+    var entryEl = entryView.render().el;
+    if (at) {
+      this.$list.children().eq(at - 1).insertAfter(entryEl);
+    }
+    else {
+      this.$list.prepend(entryEl);
+    }
+  },
+
+  removeEntry: function (at) {
+    this.views[at].stopListening();
+    this.views.splice(at, 1);
+    this.$list.children().eq(at).remove();
+  },
+
+  reactivatePushButton: function () {
+    this.$pushButton.attr('disabled', !this.converter.get('input'));
+  },
+
+  events: {
+    'click .push': 'pushToHistory'
+  },
+
+  pushToHistory: function () {
+    this.model.unshift(this.converter.clone());
+  }
+});
+
+
 var AppView = Backbone.View.extend({
   el: 'body',
 
   initialize: function () {
+    var converter = new Converter();
     this.converterView = new ConverterView({
-      model: new Converter(),
+      model: converter,
       el: '#converter'
     });
 
@@ -136,12 +254,19 @@ var AppView = Backbone.View.extend({
       model: currentTheme,
       el: '#theme-link'
     });
+
+    this.historyView = new HistoryView({
+      model: new History(),
+      converter: converter,
+      el: '#history'
+    });
   },
 
   render: function () {
     this.converterView.render();
     this.themeIconsView.render();
     this.currentThemeView.render();
+    this.historyView.render();
     return this;
   }
 });

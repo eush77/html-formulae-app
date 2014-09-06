@@ -1,0 +1,59 @@
+.history {
+    float: left;
+    width: 25%;
+}
+
+.history .push {
+    width: 100%;
+}
+
+.history ul {
+    margin-top: 0.3em;
+    padding: 0;
+    list-style: none;
+}
+
+.history li {
+    position: relative;
+    margin-bottom: 0.3em;
+    border-width: 1px;
+    border-style: dashed;
+    transition: margin 0.2s ease;
+    white-space: nowrap;
+}
+
+.history li:hover {
+    cursor: pointer;
+    margin-left: 0.3em;
+    margin-right: -0.3em;
+}
+
+.history .pop {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 2px;
+}
+
+.history .pop::before {
+    content: "\274c";
+}
+
+.history .pop:hover {
+    color: red;
+}
+
+.history .output {
+    padding: 0.2em 0.4em 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.4em;
+}
+
+.history .input {
+    padding-left: 0.4em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.7em;
+    font-family: monospace;
+}

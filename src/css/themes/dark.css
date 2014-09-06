@@ -21,6 +21,18 @@ body {
     border-color: white;
 }
 
+.history {
+    color: white;
+}
+
+.history .pop:hover {
+    color: red;
+}
+
+.history li {
+    border-color: #929292;
+}
+
 .help {
     color: #666;
     border-left-color: #222;

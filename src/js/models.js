@@ -62,3 +62,11 @@ exports.CurrentTheme = exports.Theme.extend({
     this.fetch();
   }
 });
+
+
+/**
+ * History of formulas.
+ */
+exports.History = Backbone.Collection.extend({
+  model: exports.Converter
+});
