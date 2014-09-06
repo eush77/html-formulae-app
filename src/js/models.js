@@ -102,5 +102,11 @@ exports.History = Backbone.Collection.extend({
     this.each(function (model, index) {
       model.save('id', index);
     });
+  },
+
+  pushItem: function (model) {
+    this.create(model.clone().set({
+      id: this.nextId--
+    }), {at: 0});
   }
 });

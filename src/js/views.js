@@ -15,7 +15,8 @@ var Backbone = require('backbone')
 var ConverterView = Backbone.View.extend({
   Model: Converter,
 
-  initialize: function () {
+  initialize: function (options) {
+    this.history = options.history;
     this.$editor = this.$('.editor');
     this.$preview = this.$('.preview');
     this.$source = this.$('.source');
@@ -39,8 +40,17 @@ var ConverterView = Backbone.View.extend({
   },
 
   events: {
+    'keydown .editor': function (event) {
+      if (event.ctrlKey && event.which == 13) {
+        this.pushToHistory();
+      }
+    },
     'keyup .editor': 'changeInput',
     'click .source': 'selectOutput'
+  },
+
+  pushToHistory: function () {
+    this.history.pushItem(this.model);
   },
 
   changeInput: function (event) {
@@ -229,9 +239,7 @@ var HistoryView = Backbone.View.extend({
   },
 
   pushToHistory: function () {
-    this.model.create(this.converter.clone().set({
-      id: this.model.nextId--
-    }), {at: 0});
+    this.model.pushItem(this.converter);
   }
 });
 
@@ -240,9 +248,11 @@ var AppView = Backbone.View.extend({
   el: 'body',
 
   initialize: function () {
+    var history = new History();
     var converter = new Converter();
     this.converterView = new ConverterView({
       model: converter,
+      history: history,
       el: '#converter'
     });
 
@@ -258,7 +268,7 @@ var AppView = Backbone.View.extend({
     });
 
     this.historyView = new HistoryView({
-      model: new History(),
+      model: history,
       converter: converter,
       el: '#history'
     });
