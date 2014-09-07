@@ -21,6 +21,6 @@
     content: ".";
 }
 
-.list-auto-punctuation > li.no-auto-punctuation::after {
+.list-auto-punctuation > .no-auto-punctuation::after {
     content: "";
 }

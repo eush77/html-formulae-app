@@ -18,6 +18,12 @@ module.exports = function (grunt) {
       },
       lib: ['lib/test/**/*.js']
     },
+    csslint: {
+      options: {
+        csslintrc: '.csslintrc'
+      },
+      all: ['src/css/**/*.css']
+    },
 
     // Build.
     jade: {
@@ -120,7 +126,7 @@ module.exports = function (grunt) {
       },
       css: {
         files: ['src/css/**/*.css'],
-        tasks: ['concat:css', 'copy:themes', 'autoprefixer']
+        tasks: ['test-css', 'concat:css', 'copy:themes', 'autoprefixer']
       },
       html: {
         files: ['src/html/**/*.jade'],
@@ -133,6 +139,7 @@ module.exports = function (grunt) {
   // Test.
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-contrib-csslint');
   // Build.
   grunt.loadNpmTasks('grunt-jade');
   grunt.loadNpmTasks('grunt-contrib-concat');
@@ -152,7 +159,8 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test-lib', ['jshint:lib', 'mocha:lib']);
   grunt.registerTask('test-js', ['jshint:js']);
-  grunt.registerTask('test', ['test-lib', 'test-js']);
+  grunt.registerTask('test-css', ['csslint']);
+  grunt.registerTask('test', ['test-lib', 'test-js', 'test-css']);
   grunt.registerTask('build', ['jade', 'concat', 'copy', 'autoprefixer', 'browserify']);
   grunt.registerTask('minify', ['uglify', 'cssmin', 'htmlmin']);
   // grunt clean
