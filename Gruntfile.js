@@ -43,6 +43,14 @@ module.exports = function (grunt) {
         dest: 'dist'
       }
     },
+    autoprefixer: {
+      css: {
+        expand: true,
+        cwd: 'dist',
+        src: '**/*.css',
+        dest: 'dist'
+      }
+    },
     browserify: {
       index: {
         files: {
@@ -112,7 +120,7 @@ module.exports = function (grunt) {
       },
       css: {
         files: ['src/css/**/*.css'],
-        tasks: ['concat:css', 'copy:themes']
+        tasks: ['concat:css', 'copy:themes', 'autoprefixer']
       },
       html: {
         files: ['src/html/**/*.jade'],
@@ -129,6 +137,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-jade');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
@@ -144,7 +153,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test-lib', ['jshint:lib', 'mocha:lib']);
   grunt.registerTask('test-js', ['jshint:js']);
   grunt.registerTask('test', ['test-lib', 'test-js']);
-  grunt.registerTask('build', ['jade', 'concat', 'copy', 'browserify']);
+  grunt.registerTask('build', ['jade', 'concat', 'copy', 'autoprefixer', 'browserify']);
   grunt.registerTask('minify', ['uglify', 'cssmin', 'htmlmin']);
   // grunt clean
   // grunt gh-pages
