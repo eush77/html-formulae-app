@@ -45,7 +45,7 @@ var ConverterView = Backbone.View.extend({
         this.pushToHistory();
       }
     },
-    'keyup .editor': 'changeInput',
+    'input .editor': 'changeInput',
     'click .source': 'selectOutput'
   },
 
