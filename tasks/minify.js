@@ -3,10 +3,11 @@
 (function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.config('uglify', {
-    index: {
-      files: {
-        'dist/index.js': 'dist/index.js'
-      }
+    all: {
+      expand: true,
+      cwd: 'dist',
+      src: '**/*.js',
+      dest: 'dist'
     }
   });
 
@@ -14,9 +15,9 @@
   grunt.config('cssmin', {
     all: {
       expand: true,
-      cwd: 'dist/',
+      cwd: 'dist',
       src: '**/*.css',
-      dest: 'dist/'
+      dest: 'dist'
     },
   });
 
@@ -31,12 +32,13 @@
       removeEmptyAttributes: true,
       removeOptionalTags: true
     },
-    index: {
-      files: {
-        'dist/index.html': 'dist/index.html'
-      }
-    }
+    all: {
+      expand: true,
+      cwd: 'dist',
+      src: '**/*.html',
+      dest: 'dist'
+    },
   });
 
-  grunt.registerTask('minify', ['uglify', 'cssmin', 'htmlmin']);
+  grunt.registerTask('minify', ['newer:uglify', 'newer:cssmin', 'newer:htmlmin']);
 }(global.grunt));

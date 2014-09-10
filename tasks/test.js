@@ -6,8 +6,12 @@
     options: {
       jshintrc: true
     },
-    lib: ['lib/Gruntfile.js', 'lib/src/**/*.js', 'lib/test/**/*.js'],
-    js: ['Gruntfile.js', 'tasks/**/*.js', 'src/js/**/*.js']
+    lib: {
+      src: ['lib/Gruntfile.js', 'lib/src/**/*.js', 'lib/test/**/*.js']
+    },
+    app: {
+      src: ['Gruntfile.js', 'tasks/**/*.js', 'src/js/**/*.js']
+    }
   });
 
   grunt.loadNpmTasks('grunt-mocha-test');
@@ -17,7 +21,9 @@
       reporter: 'spec',
       require: 'should'
     },
-    lib: ['lib/test/**/*.js']
+    lib: {
+      src: 'lib/test/**/*.js'
+    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-csslint');
@@ -25,11 +31,12 @@
     options: {
       csslintrc: '.csslintrc'
     },
-    all: ['src/css/**/*.css']
+    app: {
+      src: 'src/css/**/*.css'
+    }
   });
 
-  grunt.registerTask('test-lib', ['jshint:lib', 'mocha:lib']);
-  grunt.registerTask('test-js', ['jshint:js']);
-  grunt.registerTask('test-css', ['csslint']);
-  grunt.registerTask('test', ['test-lib', 'test-js', 'test-css']);
+  grunt.registerTask('test-lib', ['newer:jshint:lib', 'newer:mocha:lib']);
+  grunt.registerTask('test-app', ['newer:jshint:app', 'newer:csslint:app']);
+  grunt.registerTask('test', ['test-lib', 'test-app']);
 }(global.grunt));

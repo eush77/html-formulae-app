@@ -7,7 +7,9 @@
       client: false,
     },
     index: {
-      src: 'src/html/index.jade',
+      expand: true,
+      cwd: 'src/html',
+      src: '**/*.jade',
       dest: 'dist'
     }
   });
@@ -49,5 +51,6 @@
     }
   });
 
-  grunt.registerTask('build', ['jade', 'concat', 'copy', 'autoprefixer', 'browserify']);
+  grunt.registerTask('build', ['newer:jade', 'newer:concat', 'newer:copy',
+                               'autoprefixer', 'newer:browserify']);
 }(global.grunt));

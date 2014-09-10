@@ -11,23 +11,15 @@
       options: {
         reload: true
       },
-      tasks: ['jshint:js']
+      tasks: ['test-app']
     },
     lib: {
       files: ['lib/src/**/*.js', 'lib/test/**/*.js'],
-      tasks: ['test-lib', 'browserify']
+      tasks: ['test-lib', 'build']
     },
-    js: {
-      files: ['src/js/**/*.js'],
-      tasks: ['test-js', 'browserify']
+    app: {
+      files: ['src/html/**/*.jade', 'src/css/**/*.css', 'src/js/**/*.js'],
+      tasks: ['test-app', 'build']
     },
-    css: {
-      files: ['src/css/**/*.css'],
-      tasks: ['test-css', 'concat:css', 'copy:themes', 'autoprefixer']
-    },
-    html: {
-      files: ['src/html/**/*.jade'],
-      tasks: ['jade']
-    }
   });
 }(global.grunt));
