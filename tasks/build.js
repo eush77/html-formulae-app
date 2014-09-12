@@ -7,10 +7,9 @@
       client: false,
     },
     index: {
-      expand: true,
-      cwd: 'src/html',
-      src: '**/*.jade',
-      dest: 'dist'
+      files: {
+        'dist': 'src/html/**/*.jade'
+      }
     }
   });
 
