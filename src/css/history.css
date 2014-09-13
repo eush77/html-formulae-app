@@ -7,6 +7,10 @@
     width: 100%;
 }
 
+.history .push::before {
+    margin-right: 2px;
+}
+
 .history ul {
     margin-top: 0.3em;
     padding: 0;
@@ -33,10 +37,6 @@
     top: 0;
     right: 0;
     margin-right: 2px;
-}
-
-.history .pop::before {
-    content: "\274c";
 }
 
 .history .pop:hover {

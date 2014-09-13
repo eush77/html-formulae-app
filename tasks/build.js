@@ -16,7 +16,7 @@
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.config('concat', {
     css: {
-      src: 'src/css/*.css',
+      src: ['glyphs/ionicons.css', 'src/css/*.css'],
       dest: 'dist/main.css'
     }
   });
@@ -27,6 +27,12 @@
       expand: true,
       cwd: 'src/css',
       src: 'themes/*.css',
+      dest: 'dist'
+    },
+    ionicons: {
+      expand: true,
+      cwd: 'glyphs',
+      src: 'ionicons.svg',
       dest: 'dist'
     }
   });

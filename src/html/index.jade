@@ -11,10 +11,10 @@ html
       textarea.source(readonly)
     #theme-icons.theme-icons
     #history.history
-      button.push(disabled, title='Ctrl+Enter') &#x21e9; Push to history
+      button.push.ion-chevron-down(disabled, title='Ctrl+Enter') Push to history
       ul
       script#history-entry-template(type='text/template')
-        span.pop
+        span.pop.ion-close-circled
         .output <%= output %>
         .input <%- input %>
     .help

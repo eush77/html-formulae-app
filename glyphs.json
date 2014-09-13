@@ -1,0 +1,11 @@
+{
+  "fontFamily": "Ionicons",
+  "formats": {
+    "svg": "ionicons.svg"
+  },
+  "icons": {
+    "close-circled": "f128",
+    "chevron-down": "f123"
+  },
+  "prefix": "ion-"
+}

@@ -5,6 +5,7 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-newer');
 
+  require('./tasks/postinstall');
   require('./tasks/test');
   require('./tasks/build');
   require('./tasks/minify');
