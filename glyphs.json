@@ -4,8 +4,14 @@
     "svg": "ionicons.svg"
   },
   "icons": {
-    "close-circled": "f128",
-    "chevron-down": "f123"
+    "close-circled": {
+      "codepoint": "f128",
+      "url": "https://raw.githubusercontent.com/driftyco/ionicons/f3b69b69b7b4f2769c66d053fea9ced4d596638d/src/close-circled.svg"
+    },
+    "chevron-down": {
+      "codepoint": "f123",
+      "url": "https://raw.githubusercontent.com/driftyco/ionicons/f3b69b69b7b4f2769c66d053fea9ced4d596638d/src/chevron-down.svg"
+    }
   },
   "prefix": "ion-"
 }
