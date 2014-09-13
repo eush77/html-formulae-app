@@ -40,5 +40,15 @@
     },
   });
 
-  grunt.registerTask('minify', ['newer:uglify', 'newer:cssmin', 'newer:htmlmin']);
+  grunt.loadNpmTasks('grunt-svgmin');
+  grunt.config('svgmin', {
+    all: {
+      expand: true,
+      cwd: 'dist',
+      src: '**/*.svg',
+      dest: 'dist'
+    }
+  });
+
+  grunt.registerTask('minify', ['newer:uglify', 'newer:cssmin', 'newer:htmlmin', 'newer:svgmin']);
 }(global.grunt));
