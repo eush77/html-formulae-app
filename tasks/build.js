@@ -1,5 +1,8 @@
 'use strict';
 
+var drFontBuilder = require('dr-font-builder');
+
+
 (function (grunt) {
   grunt.loadNpmTasks('grunt-jade');
   grunt.config('jade', {
@@ -33,7 +36,19 @@
       expand: true,
       cwd: 'glyphs',
       src: 'ionicons.svg',
-      dest: 'dist'
+      dest: 'dist/fonts'
+    }
+  });
+
+  grunt.registerMultiTask('dr-font-builder', 'Build TTF, WOFF and EOT.', function () {
+    this.filesSrc.forEach(function (svg) {
+      drFontBuilder(svg, ['ttf', 'woff', 'eot']);
+      grunt.log.ok('Format expanded: ' + svg);
+    });
+  });
+  grunt.config('dr-font-builder', {
+    ionicons: {
+      src: 'dist/fonts/ionicons.svg'
     }
   });
 
@@ -57,5 +72,5 @@
   });
 
   grunt.registerTask('build', ['newer:jade', 'newer:concat', 'newer:copy',
-                               'autoprefixer', 'newer:browserify']);
+                               'newer:dr-font-builder', 'autoprefixer', 'newer:browserify']);
 }(global.grunt));

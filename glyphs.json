@@ -1,7 +1,10 @@
 {
   "fontFamily": "Ionicons",
   "formats": {
-    "svg": "ionicons.svg"
+    "svg": "fonts/ionicons.svg",
+    "ttf": "fonts/ionicons.ttf",
+    "woff": "fonts/ionicons.woff",
+    "eot": "fonts/ionicons.eot"
   },
   "icons": {
     "close-circled": {

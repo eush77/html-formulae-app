@@ -29,7 +29,7 @@ var iconFileTemplate = template('u${codepoint}-${name}.svg');
     },
   });
 
-  grunt.registerTask('fontcss', 'Generate CSS classes per font glyph.', function () {
+  grunt.registerTask('css-codepoints', 'Generate CSS classes per font glyph.', function () {
     var css = cssCodepoints(extend({}, glyphs, {
       icons: zipObject(pairs(glyphs.icons).map(function (icon) {
         return [icon[0], icon[1].codepoint];
@@ -40,5 +40,5 @@ var iconFileTemplate = template('u${codepoint}-${name}.svg');
     grunt.log.ok('CSS generated.');
   });
 
-  grunt.registerTask('postinstall', ['curl', 'svgicons2svgfont', 'fontcss']);
+  grunt.registerTask('postinstall', ['curl', 'svgicons2svgfont', 'css-codepoints']);
 }(global.grunt));
