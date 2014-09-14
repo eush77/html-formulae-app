@@ -11,7 +11,7 @@ var drFontBuilder = require('dr-font-builder');
     },
     index: {
       files: {
-        'dist': 'src/html/**/*.jade'
+        'dist': 'src/html/index.jade'
       }
     }
   });

@@ -1,0 +1,4 @@
+mixin features()
+  tr
+    td= [].map.call(arguments, function (feat) { return '&ldquo;' + feat + '&rdquo;' }).join(', ').replace(/, &ldquo;-&rdquo;, /g, '&thinsp;&ndash;&thinsp;')
+    td: block
