@@ -1,6 +1,8 @@
 'use strict';
 
-var convert = require('../../lib/src/convert');
+var convert = require('../../lib/src/convert')
+  , stripHtml = require('strip-html')
+  , concat = require('concat-stream');
 
 var Backbone = require('backbone')
   , _ = require('underscore');
@@ -23,7 +25,13 @@ exports.Converter = Backbone.Model.extend({
   },
 
   setOutput: function () {
-    this.set('output', this.convert(this.get('input')));
+    var input = this.get('input');
+
+    var htmlStripper = stripHtml();
+    htmlStripper.pipe(concat({ encoding: 'string' }, function (output) {
+      this.set('output', output);
+    }.bind(this)));
+    htmlStripper.end(this.convert(input));
   },
 
   convert: function (input) {
