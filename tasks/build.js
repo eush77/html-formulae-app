@@ -72,5 +72,5 @@ var drFontBuilder = require('dr-font-builder');
   });
 
   grunt.registerTask('build', ['newer:jade', 'newer:concat', 'newer:copy',
-                               'newer:dr-font-builder', 'autoprefixer', 'newer:browserify']);
+                               'newer:dr-font-builder', 'autoprefixer', 'browserify']);
 }(global.grunt));
