@@ -1,6 +1,6 @@
 {
   "name": "html-formulae-app",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Formula editor for HTML",
   "author": "Eugene Sharygin <eush77@gmail.com>",
   "license": "MIT",
@@ -20,8 +20,11 @@
   "keywords": [
     "formula",
     "editor",
+    "app",
+    "webapp",
     "html",
-    "entities"
+    "entities",
+    "syntax"
   ],
   "dependencies": {
     "backbone": "^1.1.2",
