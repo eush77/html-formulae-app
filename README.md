@@ -1,11 +1,11 @@
-# HTML Formul&aelig; [![Build Status][travis-badge]][travis] [![Dependency Status][david-badge]][david] [![DevDependency Status][david-dev-badge]][david-dev]
+# html-formul&aelig;-app [![Build Status][travis-badge]][travis] [![Dependency Status][david-badge]][david] [![DevDependency Status][david-dev-badge]][david-dev]
 
-[travis-badge]: https://travis-ci.org/eush77/html-formulae.svg
-[travis]: https://travis-ci.org/eush77/html-formulae
-[david-badge]: https://david-dm.org/eush77/html-formulae.png
-[david]: https://david-dm.org/eush77/html-formulae
-[david-dev-badge]: https://david-dm.org/eush77/html-formulae/dev-status.png
-[david-dev]: https://david-dm.org/eush77/html-formulae#info=devDependencies
+[travis-badge]: https://travis-ci.org/eush77/html-formulae-app.svg
+[travis]: https://travis-ci.org/eush77/html-formulae-app
+[david-badge]: https://david-dm.org/eush77/html-formulae-app.png
+[david]: https://david-dm.org/eush77/html-formulae-app
+[david-dev-badge]: https://david-dm.org/eush77/html-formulae-app/dev-status.png
+[david-dev]: https://david-dm.org/eush77/html-formulae-app#info=devDependencies
 
 **tl;dr**: HTML Formul&aelig; translates formulas in lightweight TeX-inspired syntax to HTML.
 

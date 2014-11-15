@@ -1,5 +1,5 @@
 {
-  "name": "html-formulae",
+  "name": "html-formulae-app",
   "version": "0.4.1",
   "description": "Formula editor for HTML",
   "author": "Eugene Sharygin <eush77@gmail.com>",
@@ -9,13 +9,13 @@
     "test": "grunt test",
     "postinstall": "grunt postinstall"
   },
-  "homepage": "https://github.com/eush77/html-formulae",
+  "homepage": "https://github.com/eush77/html-formulae-app",
   "repository": {
     "type": "git",
-    "url": "https://github.com/eush77/html-formulae"
+    "url": "https://github.com/eush77/html-formulae-app"
   },
   "bugs": {
-    "url": "https://github.com/eush77/html-formulae/issues"
+    "url": "https://github.com/eush77/html-formulae-app/issues"
   },
   "keywords": [
     "formula",
@@ -27,6 +27,7 @@
     "backbone": "^1.1.2",
     "backbone.localstorage": "^1.1.13",
     "concat-stream": "^1.4.6",
+    "html-formulae": "^0.3.1",
     "jquery": "^2.1.1",
     "lodash.template": "^2.4.1",
     "strip-html": "^1.0.1",
