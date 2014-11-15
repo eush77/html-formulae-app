@@ -1,6 +1,6 @@
 'use strict';
 
-var convert = require('html-formulae')
+var htmlFormulae = require('html-formulae')
   , stripHtml = require('strip-html')
   , concat = require('concat-stream');
 
@@ -31,12 +31,7 @@ exports.Converter = Backbone.Model.extend({
     htmlStripper.pipe(concat({ encoding: 'string' }, function (output) {
       this.set('output', output);
     }.bind(this)));
-    htmlStripper.end(this.convert(input));
-  },
-
-  convert: function (input) {
-    // Proxy to Convert module.
-    return convert(input);
+    htmlStripper.end(htmlFormulae(input));
   }
 });
 
