@@ -1,6 +1,6 @@
 'use strict';
 
-var convert = require('../../lib/src/convert')
+var convert = require('html-formulae')
   , stripHtml = require('strip-html')
   , concat = require('concat-stream');
 
