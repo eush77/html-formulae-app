@@ -6,23 +6,11 @@
     options: {
       jshintrc: true
     },
-    lib: {
-      src: ['lib/Gruntfile.js', 'lib/src/**/*.js', 'lib/test/**/*.js']
-    },
     app: {
-      src: ['Gruntfile.js', 'tasks/**/*.js', 'src/js/**/*.js']
-    }
-  });
-
-  grunt.loadNpmTasks('grunt-mocha-test');
-  grunt.task.renameTask('mochaTest', 'mocha');
-  grunt.config('mocha', {
-    options: {
-      reporter: 'spec',
-      require: 'should'
+      src: ['src/js/**/*.js']
     },
-    lib: {
-      src: 'lib/test/**/*.js'
+    build: {
+      src: ['Gruntfile.js', 'tasks/**/*.js']
     }
   });
 
@@ -36,7 +24,5 @@
     }
   });
 
-  grunt.registerTask('test-lib', ['newer:jshint:lib', 'newer:mocha:lib']);
-  grunt.registerTask('test-app', ['newer:jshint:app', 'newer:csslint:app']);
-  grunt.registerTask('test', ['test-lib', 'test-app']);
+  grunt.registerTask('test', ['newer:jshint', 'newer:csslint']);
 }(global.grunt));

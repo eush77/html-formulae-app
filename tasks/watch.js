@@ -11,15 +11,11 @@
       options: {
         reload: true
       },
-      tasks: ['test-app']
-    },
-    lib: {
-      files: ['lib/src/**/*.js', 'lib/test/**/*.js'],
-      tasks: ['test-lib', 'build']
+      tasks: ['test']
     },
     app: {
       files: ['src/html/**/*.jade', 'src/css/**/*.css', 'src/js/**/*.js'],
-      tasks: ['test-app', 'build']
+      tasks: ['test', 'build']
     },
   });
 }(global.grunt));
