@@ -33,6 +33,7 @@
     "html-formulae": "^0.3.1",
     "jquery": "^2.1.1",
     "lodash.template": "^2.4.1",
+    "opn": "^1.0.0",
     "strip-html": "^1.0.1",
     "underscore": "^1.7.0"
   },
