@@ -6,8 +6,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "test": "grunt test",
-    "postinstall": "grunt postinstall"
+    "prepublish": "grunt",
+    "test": "grunt test"
   },
   "homepage": "https://github.com/eush77/html-formulae-app",
   "repository": {

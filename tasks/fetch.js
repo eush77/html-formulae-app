@@ -8,6 +8,8 @@ var cssCodepoints = require('css-codepoints')
   , extend = require('extend')
   , template = require('lodash.template');
 
+var fs = require('fs');
+
 
 var iconFileTemplate = template('u${codepoint}-${name}.svg');
 
@@ -40,5 +42,8 @@ var iconFileTemplate = template('u${codepoint}-${name}.svg');
     grunt.log.ok('CSS generated.');
   });
 
-  grunt.registerTask('postinstall', ['curl', 'svgicons2svgfont', 'css-codepoints']);
+  grunt.registerTask('fetch', ['curl', 'svgicons2svgfont', 'css-codepoints']);
 }(global.grunt));
+
+
+module.exports = !fs.existsSync('glyphs/ionicons.svg');
