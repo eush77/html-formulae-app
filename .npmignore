@@ -1,0 +1,12 @@
+/tasks/
+/glyphs/
+/src/
+.grunt/
+
+/glyphs.json
+
+Gruntfile.js
+.jshintrc
+.csslintrc
+
+.todo
