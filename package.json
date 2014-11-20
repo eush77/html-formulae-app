@@ -4,7 +4,8 @@
   "description": "Formula editor for HTML",
   "author": "Eugene Sharygin <eush77@gmail.com>",
   "license": "MIT",
-  "private": true,
+  "preferGlobal": true,
+  "bin": "bin/cli.js",
   "scripts": {
     "prepublish": "grunt",
     "test": "grunt test"
