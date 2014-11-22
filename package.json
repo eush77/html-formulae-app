@@ -31,7 +31,7 @@
     "backbone": "^1.1.2",
     "backbone.localstorage": "^1.1.13",
     "concat-stream": "^1.4.6",
-    "html-formulae": "^0.3.1",
+    "html-formulae": "^0.4.1",
     "jquery": "^2.1.1",
     "lodash.template": "^2.4.1",
     "opn": "^1.0.0",
