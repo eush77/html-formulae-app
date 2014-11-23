@@ -3,7 +3,7 @@
 var glyphs = require('../glyphs.json');
 
 var cssCodepoints = require('css-codepoints')
-  , zipObject = require('lodash.zipobject')
+  , zipmap = require('zipmap')
   , pairs = require('lodash.pairs')
   , extend = require('extend')
   , template = require('lodash.template');
@@ -15,9 +15,12 @@ var iconFileTemplate = template('u${codepoint}-${name}.svg');
 
 (function (grunt) {
   grunt.loadNpmTasks('grunt-curl');
-  grunt.config('curl', zipObject(pairs(glyphs.icons).map(function (icon) {
+  grunt.config('curl', zipmap(pairs(glyphs.icons).map(function (icon) {
     icon = extend({name: icon[0]}, icon[1]);
-    return ['glyphs/src/' + iconFileTemplate(icon), icon.url];
+    return {
+      key: 'glyphs/src/' + iconFileTemplate(icon),
+      value: icon.url
+    };
   })));
 
   grunt.loadNpmTasks('grunt-svgicons2svgfont');
@@ -33,7 +36,7 @@ var iconFileTemplate = template('u${codepoint}-${name}.svg');
 
   grunt.registerTask('css-codepoints', 'Generate CSS classes per font glyph.', function () {
     var css = cssCodepoints(extend({}, glyphs, {
-      icons: zipObject(pairs(glyphs.icons).map(function (icon) {
+      icons: zipmap(pairs(glyphs.icons).map(function (icon) {
         return [icon[0], icon[1].codepoint];
       }))
     }));
