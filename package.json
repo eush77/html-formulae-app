@@ -62,6 +62,7 @@
     "grunt-svgicons2svgfont": "^0.1.2",
     "grunt-svgmin": "^1.0.0",
     "lodash.pairs": "^2.4.1",
+    "time-grunt": "^1.0.0",
     "zipmap": "^1.1.1"
   }
 }

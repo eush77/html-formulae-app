@@ -2,6 +2,7 @@
 
 module.exports = function (grunt) {
   global.grunt = grunt;
+  require('time-grunt')(grunt);
   grunt.loadNpmTasks('grunt-newer');
 
   var doFetch = require('./tasks/fetch');
